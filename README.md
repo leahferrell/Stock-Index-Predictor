@@ -29,18 +29,27 @@ A research paper titled "A Genetic Algorithm Optimized Decision Tree SVM based S
 
 ## IV. Technical Details:
 
-##### IDE: Eclipse
-##### Testing: TBD
+##### IDE: 
+	Eclipse
+##### Testing: 
+	TBD
 ##### Language: 
 	Backend: Java (most likely), potentially: Python or Scala
 	Frontend: JavaScript, HTML, CSS
-##### Framework: Spring, Jersey (will change if a different language is chosen)
-##### Database: MySQL
-##### Dependency Management: Maven
-##### Hosting: DigitalOcean
-##### Website: leahferrell.info/services/ or services.leahferrell.info
-##### VCS: git -- GitHub
-##### Repository: https://github.com/leah3393/Stock-Index-Predictor
+##### Framework: 
+	Spring, Jersey (will change if a different language is chosen)
+##### Database: 
+	MySQL
+##### Dependency Management: 
+	Maven
+##### Hosting: 
+	DigitalOcean
+##### Website: 
+	leahferrell.info/services/ or services.leahferrell.info
+##### VCS: 
+	git -- GitHub
+##### Repository: 
+	https://github.com/leah3393/Stock-Index-Predictor
 
 
 ## V. Timeline of Tasks:
@@ -56,16 +65,16 @@ A research paper titled "A Genetic Algorithm Optimized Decision Tree SVM based S
 
 ## VI. Detailed Design - Core:
 
-### A. Daily Inputs
+#### A. Daily Inputs
 	i. coming soon
 
-### B. Technical Indicators
+#### B. Technical Indicators
 	i. coming soon
 
-### C. Prediction System
+#### C. Prediction System
 	i. coming soon
 
-### D. Trading Rule
+#### D. Trading Rule
 	i. coming soon
 
 
