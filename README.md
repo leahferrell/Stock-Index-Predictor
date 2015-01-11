@@ -138,10 +138,20 @@ A research paper titled "A Genetic Algorithm Optimized Decision Tree SVM based S
 
 
 #### C. Prediction System
-	i. coming soon
+Decision Tree
+
+Support Vector Machine
+
+Genetic Algorithm
 
 #### D. Trading Rule
-	i. coming soon
+The trading rule will be one of three rules:
+
+1. Up Trend: Buy
+
+2. Down Trend: Sell
+
+3. No Trend: Stay
 
 
 ## VII. Detailed Design - Database:
