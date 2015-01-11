@@ -4,9 +4,22 @@
 
 ##### Project Owner: Leah Ferrell
 
+## Table of Contents
+[I. Intro](https://github.com/leah3393/Stock-Index-Predictor#i-intro)
+[II. Influence](https://github.com/leah3393/Stock-Index-Predictor#ii-influence)
+[III. Overall Design](https://github.com/leah3393/Stock-Index-Predictor#iii-overall-design)
+[IV. Technical Details](https://github.com/leah3393/Stock-Index-Predictor#iv-technical-details)
+[V. Timeline of Tasks](https://github.com/leah3393/Stock-Index-Predictor#v-timeline-of-tasks)
+[VI. Detailed Design - Core](https://github.com/leah3393/Stock-Index-Predictor#vi-detailed-design---core)
+[VII. Detailed Design - Database](https://github.com/leah3393/Stock-Index-Predictor#vii-detailed-design---database)
+[VIII. Detailed Design - RESTful Web Service](https://github.com/leah3393/Stock-Index-Predictor#viii-detailed-design---restful-web-service)
+[IX. Detailed Design - Web and Phone Apps](https://github.com/leah3393/Stock-Index-Predictor#ix-detailed-design---web-and-phone-apps)
+[X. Future Plans](https://github.com/leah3393/Stock-Index-Predictor#x-future-plans)
+
+
 ## I. Intro:
 
-Over the past few months I have become increasingly interested in the worlds of investing through stock trading, machine learning, and software engineering. I decided it would be best to merge all of these interests through a project to enhance my knowledge, and at the end have a cool/useful project to show off.
+Over the past few months I have become increasingly interested in the worlds of investing, machine learning, and software engineering. I decided it would be best to merge all of these interests through a project to enhance my knowledge, and at the end have a cool/useful project to show off.
 
 
 ## II. Influence:
@@ -17,10 +30,10 @@ A research paper titled "A Genetic Algorithm Optimized Decision Tree SVM based S
 ## III. Overall Design:
 
 #### A. The core project consists of 4 parts: 
-	Daily inputs: Daily Open, Daily High, Daily Low, Daily Closing, Trading Volumes
-	Technical Indicators (features): there are 28 of these (and discussed in the paper) and are obtained through analysis on the inputs.
-	Prediction System: The prediction system is made up of a Decision Tree, SVM, and Genetic Algorithm and is fed the technical indicators as inputs.
-	Trading Rule: Based on the predicted trend from the prediction system.
+1. Daily inputs: Daily Open, Daily High, Daily Low, Daily Closing, Trading Volumes
+2. Technical Indicators (features): there are 28 of these (and discussed in the paper) and are obtained through analysis on the inputs.
+3. Prediction System: The prediction system is made up of a Decision Tree, SVM, and Genetic Algorithm and is fed the technical indicators as inputs.
+4. Trading Rule: Based on the predicted trend from the prediction system.
 
 #### B. There will be a database to store the data obtained from both the daily inputs, the technical indicators, and the prediction system.
 #### C. This will be hosted as a web service and will provide a web API, so other applications can interface with it.
