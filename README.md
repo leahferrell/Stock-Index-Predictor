@@ -66,10 +66,19 @@ A research paper titled "A Genetic Algorithm Optimized Decision Tree SVM based S
 ## VI. Detailed Design - Core:
 
 #### A. Daily Inputs
-	i. coming soon
+	i. These will be updated daily through a finance API (most likely Bloomberg or Yahoo Finance)
+	ii. The inputs are: Daily Open, Daily High, Daily Low, Daily Closing, Trading Volumes
+	iii. The inputs are queried through their date.
+	iv. Each stock index has its own table of daily input values.
 
 #### B. Technical Indicators
-	i. coming soon
+
+| Tables        | Are           | Cool  |
+| ------------- |:-------------:| -----:|
+| col 3 is      | right-aligned | $1600 |
+| col 2 is      | centered      |   $12 |
+| zebra stripes | are neat      |    $1 |
+
 
 #### C. Prediction System
 	i. coming soon
