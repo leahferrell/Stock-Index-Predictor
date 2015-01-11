@@ -4,17 +4,17 @@ A simple web service that predicts stock indexes one day ahead of time.
 
 Project Owner: Leah Ferrell
 
-I. Intro:
+## I. Intro:
 
-Over the past few months I have increasingly become more interested in the worlds of investing through stock trading, machine learning, and software engineering. I decided it would be best to merge all of the interests in one and begin working on a project to help me learn all of these interests, and at the end have a cool/useful project to show off.
+Over the past few months I have become increasingly interested in the worlds of investing through stock trading, machine learning, and software engineering. I decided it would be best to merge all of the interests in one and begin working on a project to help me learn all of these interests, and at the end have a cool/useful project to show off.
 
 
-II. Influence:
+## II. Influence:
 
 A research paper titled "A Genetic Algorithm Optimized Decision Tree SVM based Stock Market Trend Prediction System" is the basis for this project. It can be found here: http://stocktrendresearch.googlecode.com/svn-history/r7/trunk/Paper/SVM_ANN_UpDownNoTrend.pdf
 
 
-III. Overall Design:
+## III. Overall Design:
 
 A. The core project consists of 4 parts: 
 	1. Daily inputs: Daily Open, Daily High, Daily Low, Daily Closing, Trading Volumes
@@ -27,10 +27,10 @@ C. This will be hosted as a web service and will provide a web API, so other app
 D. Web and phone apps that get data from the web API will be created as examples.
 
 
-IV. Technical Details:
+## IV. Technical Details:
 
-IDE: Eclipse and Sublime
-Testing: Not yet determined
+IDE: Eclipse
+Testing: TBD
 Language: 
 	Backend: Java (most likely), potentially: Python or Scala
 	Frontend: JavaScript, HTML, CSS
@@ -40,10 +40,10 @@ Dependency Management: Maven
 Hosting: DigitalOcean
 Website: leahferrell.info/services/ or services.leahferrell.info
 VCS: git -- GitHub
-Repo: https://github.com/leah3393/Stock-Index-Predictor
+Repository: https://github.com/leah3393/Stock-Index-Predictor
 
 
-V. Timeline of Tasks:
+## V. Timeline of Tasks:
 
 1. Design and write the code to compute techinical indicators (features) used in the analysis.
 2. Design and implement the machine learning data analysis tool used in the program.
@@ -54,22 +54,37 @@ V. Timeline of Tasks:
 7. Create phone applications (iOS, Android) to display information.
 
 
-VI. Detailed Design - Core
+## VI. Detailed Design - Core:
+
+### A. Daily Inputs
+	i. coming soon
+
+### B. Technical Indicators
+	i. coming soon
+
+### C. Prediction System
+	i. coming soon
+
+### D. Trading Rule
+	i. coming soon
+
+
+## VII. Detailed Design - Database:
 
 Coming soon.
 
 
-VII. Detailed Design - RESTful Web Service and Database System
+## VIII. Detailed Design - RESTful Web Service:
 
 Coming soon.
 
 
-VIII. Detailed Design - Web and Phone Apps
+## IX. Detailed Design - Web and Phone Apps:
 
 Coming soon.
 
 
-IX. Future Plans
+## X. Future Plans:
 
 Coming soon.
 
