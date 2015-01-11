@@ -25,11 +25,11 @@
 
 [X. Future Plans](https://github.com/leah3393/Stock-Index-Predictor#x-future-plans)
 
-[XI. Installing and Running the Tool Yourself]()
+[XI. Installing and Running the Tool Yourself](https://github.com/leah3393/Stock-Index-Predictor#xi-installing-and-running-the-tool-yourself)
 
-[XII. Contributing]()
+[XII. Contributing](https://github.com/leah3393/Stock-Index-Predictor#xii-contributing)
 
-[XIII. License]()
+[XIII. License](https://github.com/leah3393/Stock-Index-Predictor#xiii-license)
 
 ## I. Intro:
 
@@ -212,7 +212,7 @@ Coming soon.
 
 ## XII. Contributing
 
-This is currently a solo project, so I don't have any plans for adding in contributions. Check back later, or just make your own fork.
+This is currently a solo project, so I don't have any plans for adding in contributions. Check back later.
 
 
 ## XIII. License
