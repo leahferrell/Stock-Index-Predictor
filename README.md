@@ -38,15 +38,15 @@ A research paper titled "A Genetic Algorithm Optimized Decision Tree SVM based S
 
 ## III. Overall Design:
 
-#### A. The core project consists of 4 parts: 
-1. Daily inputs: Daily Open, Daily High, Daily Low, Daily Closing, Trading Volumes
-2. Technical Indicators (features): there are 28 of these (and discussed in the paper) and are obtained through analysis on the inputs.
-3. Prediction System: The prediction system is made up of a Decision Tree, SVM, and Genetic Algorithm and is fed the technical indicators as inputs.
-4. Trading Rule: Based on the predicted trend from the prediction system.
+#### A. The [core](https://github.com/leah3393/Stock-Index-Predictor#vi-detailed-design---core) project consists of 4 parts: 
+1. [Daily inputs](https://github.com/leah3393/Stock-Index-Predictor#a-daily-inputs): Daily Open, Daily High, Daily Low, Daily Closing, Trading Volumes
+2. [Technical Indicators (features)](https://github.com/leah3393/Stock-Index-Predictor#b-technical-indicators): there are 28 of these (and discussed in the paper) and are obtained through analysis on the inputs.
+3. [Prediction System](https://github.com/leah3393/Stock-Index-Predictor#c-prediction-system): The prediction system is made up of a Decision Tree, SVM, and Genetic Algorithm and is fed the technical indicators as inputs.
+4. [Trading Rule](https://github.com/leah3393/Stock-Index-Predictor#d-trading-rule): Based on the predicted trend from the prediction system.
 
-#### B. There will be a database to store the data obtained from both the daily inputs, the technical indicators, and the prediction system.
-#### C. This will be hosted as a web service and will provide a web API, so other applications can interface with it.
-#### D. Web and phone apps that get data from the web API will be created as examples.
+#### B. There will be a [database](https://github.com/leah3393/Stock-Index-Predictor#vii-detailed-design---database) to store the data obtained from both the daily inputs, the technical indicators, and the prediction system.
+#### C. This will be [hosted as a web service](https://github.com/leah3393/Stock-Index-Predictor#viii-detailed-design---restful-web-service) and will provide a web API, so other applications can interface with it.
+#### D. [Web and phone apps](https://github.com/leah3393/Stock-Index-Predictor#ix-detailed-design---web-and-phone-apps) that get data from the web API will be created as examples.
 
 
 ## IV. Technical Details:
