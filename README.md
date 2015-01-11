@@ -123,7 +123,7 @@ A research paper titled "A Genetic Algorithm Optimized Decision Tree SVM based S
 27. 25 Day Moving Average
 28. 65 Day Moving Average
 
-###### Helper Indicators: (used to find the technical indicators in the table)
+###### Helper Indicators: (used to find the technical indicators)
 1. Exponential Moving Average
 2. Simple Moving Average
 3. Accumulation Distribution Line
@@ -153,10 +153,20 @@ The trading rule will be one of three rules:
 
 ## VII. Detailed Design - Database:
 
-Coming soon.
+### Schema
+
+### Visual Diagram
 
 
 ## VIII. Detailed Design - RESTful Web Service:
+
+### Architecture
+
+#### Tools
+
+#### Diagram
+
+### API Services
 
 ##### Create
 Coming soon
