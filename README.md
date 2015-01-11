@@ -6,14 +6,23 @@
 
 ## Table of Contents
 [I. Intro](https://github.com/leah3393/Stock-Index-Predictor#i-intro)
+
 [II. Influence](https://github.com/leah3393/Stock-Index-Predictor#ii-influence)
+
 [III. Overall Design](https://github.com/leah3393/Stock-Index-Predictor#iii-overall-design)
+
 [IV. Technical Details](https://github.com/leah3393/Stock-Index-Predictor#iv-technical-details)
+
 [V. Timeline of Tasks](https://github.com/leah3393/Stock-Index-Predictor#v-timeline-of-tasks)
+
 [VI. Detailed Design - Core](https://github.com/leah3393/Stock-Index-Predictor#vi-detailed-design---core)
+
 [VII. Detailed Design - Database](https://github.com/leah3393/Stock-Index-Predictor#vii-detailed-design---database)
+
 [VIII. Detailed Design - RESTful Web Service](https://github.com/leah3393/Stock-Index-Predictor#viii-detailed-design---restful-web-service)
+
 [IX. Detailed Design - Web and Phone Apps](https://github.com/leah3393/Stock-Index-Predictor#ix-detailed-design---web-and-phone-apps)
+
 [X. Future Plans](https://github.com/leah3393/Stock-Index-Predictor#x-future-plans)
 
 
