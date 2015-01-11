@@ -1,8 +1,8 @@
 # Stock-Index-Predictor
 
-A simple web service that predicts stock indexes one day ahead of time.
+### A simple web service that predicts stock indexes one day ahead of time.
 
-Project Owner: Leah Ferrell
+### Project Owner: Leah Ferrell
 
 ## I. Intro:
 
