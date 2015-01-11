@@ -138,11 +138,11 @@ A research paper titled "A Genetic Algorithm Optimized Decision Tree SVM based S
 
 
 #### C. Prediction System
-Decision Tree
+##### Decision Tree
 
-Support Vector Machine
+##### Support Vector Machine
 
-Genetic Algorithm
+##### Genetic Algorithm
 
 #### D. Trading Rule
 The trading rule will be one of three rules:
@@ -161,12 +161,22 @@ Coming soon.
 
 ## VIII. Detailed Design - RESTful Web Service:
 
-Coming soon.
+##### Create
+
+##### Read
+
+##### Update
+
+##### Delete
 
 
 ## IX. Detailed Design - Web and Phone Apps:
 
-Coming soon.
+##### General
+
+##### Web
+
+##### Mobile
 
 
 ## X. Future Plans:
