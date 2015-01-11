@@ -104,7 +104,7 @@ A research paper titled "A Genetic Algorithm Optimized Decision Tree SVM based S
 |27	| 25 Day Moving Average 				|
 |28	| 65 Day Moving Average					|
 
-Helper Indicators: (used to find the technical indicators in the table)
+###### Helper Indicators: (used to find the technical indicators in the table)
 1. Exponential Moving Average
 2. Simple Moving Average
 3. Accumulation Distribution Line
