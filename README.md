@@ -94,37 +94,34 @@ A research paper titled "A Genetic Algorithm Optimized Decision Tree SVM based S
 4. Each stock index has its own table of daily input values.
 
 #### B. Technical Indicators
-
-| # | Technical Indicator 					|
-|---|---------------------------------------|
-|1 	| Positive Volume Index (PVI)			|
-|2 	| Negative Volume Index (NVI)			|
-|3 	| On-Balance Volume (OBV)				|
-|4 	| Typical Volumes 						|
-|5 	| Price-Volume trend 					|
-|6 	| Accumulation/Distribution Oscillator	|
-|7 	| Chaikin's Oscillator					|
-|8 	| Chaikin's Volitility					|
-|9 	| Acceleration							|
-|10	| Highest High 							|
-|11	| Lowest Low 							|
-|12	| Relative Strength Index 				|
-|13	| MACD Nine Period Moving Average 		|
-|14	| MACD Line								|
-|15	| Momentum								|
-|16	| Stochastic Oscillator %k 				|
-|17	| Stochastic Oscillator %d 				|
-|18	| Typical Price 						|
-|19	| Median Price 							|
-|20	| Weighted Close						|
-|21	| William's %R 							|
-|22	| Price Rate of Change 					|
-|23	| William's Accumulation/Distribution 	|
-|24	| Bollinger Upper 						|
-|25	| Bollinger Lower 						|
-|26	| Bollinger Middle 						|
-|27	| 25 Day Moving Average 				|
-|28	| 65 Day Moving Average					|
+1. Positive Volume Index (PVI)
+2. Negative Volume Index (NVI)
+3. On-Balance Volume (OBV)
+4. Typical Volumes
+5. Price-Volume trend
+6. Accumulation/Distribution Oscillator
+7. Chaikin's Oscillator
+8. Chaikin's Volitility
+9. Acceleration
+10. Highest High
+11. Lowest Low
+12. Relative Strength Index
+13. MACD Nine Period Moving Average
+14. MACD Line
+15. Momentum
+16. Stochastic Oscillator %k
+17. Stochastic Oscillator %d
+18. Typical Price
+19. Median Price
+20. Weighted Close
+21. William's %R
+22. Price Rate of Change
+23. William's Accumulation/Distribution
+24. Bollinger Upper
+25. Bollinger Lower
+26. Bollinger Middle
+27. 25 Day Moving Average
+28. 65 Day Moving Average
 
 ###### Helper Indicators: (used to find the technical indicators in the table)
 1. Exponential Moving Average
@@ -162,21 +159,28 @@ Coming soon.
 ## VIII. Detailed Design - RESTful Web Service:
 
 ##### Create
+Coming soon
 
 ##### Read
+Coming soon
 
 ##### Update
+Coming soon
 
 ##### Delete
+Coming soon
 
 
 ## IX. Detailed Design - Web and Phone Apps:
 
 ##### General
+Coming soon
 
 ##### Web
+Coming soon
 
 ##### Mobile
+Coming soon
 
 
 ## X. Future Plans:
