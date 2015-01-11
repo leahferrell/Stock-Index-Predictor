@@ -6,7 +6,7 @@
 
 ## I. Intro:
 
-Over the past few months I have become increasingly interested in the worlds of investing through stock trading, machine learning, and software engineering. I decided it would be best to merge all of the interests in one and begin working on a project to help me learn all of these interests, and at the end have a cool/useful project to show off.
+Over the past few months I have become increasingly interested in the worlds of investing through stock trading, machine learning, and software engineering. I decided it would be best to merge all of these interests through a project to enhance my knowledge, and at the end have a cool/useful project to show off.
 
 
 ## II. Influence:
