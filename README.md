@@ -25,6 +25,11 @@
 
 [X. Future Plans](https://github.com/leah3393/Stock-Index-Predictor#x-future-plans)
 
+[XI. Installing and Running the Tool Yourself]()
+
+[XII. Contributing]()
+
+[XIII. License]()
 
 ## I. Intro:
 
@@ -198,4 +203,19 @@ Coming soon
 ## X. Future Plans:
 
 Coming soon.
+
+
+## XI. Installing and Running the Tool Yourself
+
+Coming soon.
+
+
+## XII. Contributing
+
+This is currently a solo project, so I don't have any plans for adding in contributions. Check back later, or just make your own fork.
+
+
+## XIII. License
+
+Some sort of open source license. I need to look into this stuff.
 
