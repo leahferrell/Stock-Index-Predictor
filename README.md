@@ -76,13 +76,15 @@ A research paper titled "A Genetic Algorithm Optimized Decision Tree SVM based S
 
 ## V. Timeline of Tasks:
 
-1. Design and write the code to compute techinical indicators (features) used in the analysis.
-2. Design and implement the machine learning data analysis tool used in the program.
-3. Create an easily expandable database (probably MySQL) that will receive a daily feed of 5 inputs from a finance API (probably Bloomberg or Yahoo Finance)
-4. Build a REST web service with an API to host the program.
-5. Make the system extendable so that it includes many indices.
-6. Create a web display for the information and an interface for results.
-7. Create phone applications (iOS, Android) to display information.
+| #	| Task 	| Expected Completion Date | Completed (Y/N) |
+|---|-------|--------------------------|-----------------|
+|1. | Design and write the code to compute techinical indicators (features) used in the analysis. | TBD | N |
+|2. | Design and implement the machine learning data analysis tool used in the program. | TBD | N |
+|3. | Create an easily expandable database that will receive a daily feed of 5 inputs from a finance API. | TBD | N |
+|4. | Build a REST web service with an API to host the program. | TBD | N |
+|5. | Make the system extendable so that it includes many indices. | TBD | N |
+|6. | Create a web display for the information and an interface for results. | TBD | N |
+|7. | Create phone applications (iOS, Android) to display information. | TBD | N |
 
 
 ## VI. Detailed Design - Core:
