@@ -73,11 +73,36 @@ A research paper titled "A Genetic Algorithm Optimized Decision Tree SVM based S
 
 #### B. Technical Indicators
 
-| Tables        | Are           | Cool  |
-| ------------- |:-------------:| -----:|
-| col 3 is      | right-aligned | $1600 |
-| col 2 is      | centered      |   $12 |
-| zebra stripes | are neat      |    $1 |
+| # | Technical Indicator 					|
+|---|---------------------------------------|
+|1 	| Positive Volume Index (PVI)			|
+|2 	| Negative Volume Index (NVI)			|
+|3 	| On-Balance Volume (OBV)				|
+|4 	| Typical Volumes 						|
+|5 	| Price-Volume trend 					|
+|6 	| Accumulation/Distribution Oscillator	|
+|7 	| Chaikin's Oscillator					|
+|8 	| Chaikin's Volitility					|
+|9 	| Acceleration							|
+|10	| Highest High 							|
+|11	| Lowest Low 							|
+|12	| Relative Strength Index 				|
+|13	| MACD Nine Period Moving Average 		|
+|14	| MACD Line								|
+|15	| Momentum								|
+|16	| Stochastic Oscillator %k 				|
+|17	| Stochastic Oscillator %d 				|
+|18	| Typical Price 						|
+|19	| Median Price 							|
+|20	| Weighted Close						|
+|21	| William's %R 							|
+|22	| Price Rate of Change 					|
+|23	| William's Accumulation/Distribution 	|
+|24	| Bollinger Upper 						|
+|25	| Bollinger Lower 						|
+|26	| Bollinger Middle 						|
+|27	| 25 Day Moving Average 				|
+|28	| 65 Day Moving Average					|
 
 
 #### C. Prediction System
