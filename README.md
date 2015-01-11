@@ -16,15 +16,15 @@ A research paper titled "A Genetic Algorithm Optimized Decision Tree SVM based S
 
 ## III. Overall Design:
 
-A. The core project consists of 4 parts: 
-	1. Daily inputs: Daily Open, Daily High, Daily Low, Daily Closing, Trading Volumes
-	2. Technical Indicators (features): there are 28 of these (and discussed in the paper) and are obtained through analysis on the inputs.
-	3. Prediction System: The prediction system is made up of a Decision Tree, SVM, and Genetic Algorithm and is fed the technical indicators as inputs.
-	4. Trading Rule: Based on the predicted trend from the prediction system.
+### A. The core project consists of 4 parts: 
+	i. Daily inputs: Daily Open, Daily High, Daily Low, Daily Closing, Trading Volumes
+	ii. Technical Indicators (features): there are 28 of these (and discussed in the paper) and are obtained through analysis on the inputs.
+	iii. Prediction System: The prediction system is made up of a Decision Tree, SVM, and Genetic Algorithm and is fed the technical indicators as inputs.
+	iv. Trading Rule: Based on the predicted trend from the prediction system.
 
-B. There will be a database to store the data obtained from both the daily inputs, the technical indicators, and the prediction system.
-C. This will be hosted as a web service and will provide a web API, so other applications can interface with it.
-D. Web and phone apps that get data from the web API will be created as examples.
+### B. There will be a database to store the data obtained from both the daily inputs, the technical indicators, and the prediction system.
+### C. This will be hosted as a web service and will provide a web API, so other applications can interface with it.
+### D. Web and phone apps that get data from the web API will be created as examples.
 
 
 ## IV. Technical Details:
