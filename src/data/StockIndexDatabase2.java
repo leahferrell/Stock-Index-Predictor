@@ -9,12 +9,12 @@ import java.util.Iterator;
 import java.util.Set;
 import java.util.TreeMap;
 
-public class StockIndexDatabase {
+public class StockIndexDatabase2 {
 	String filepath = "./data-files/djia-inputs.csv";
 	int databaseID;
 	TreeMap<String,InputVector> inputSet = new TreeMap<String,InputVector>();
 	
-	public StockIndexDatabase(){
+	public StockIndexDatabase2(){
 		
 	}
 	public void LoadDatabase(){
@@ -52,7 +52,7 @@ public class StockIndexDatabase {
 		return inputSet.get(date);
 	}
 	public InputVector[] getRecordsFromPeriod(SimpleDate start, SimpleDate end){
-		String[] dates = getDateRange(start,end);
+		//String[] dates = getDateRange(start,end);
 		return null;
 	}
 
