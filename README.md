@@ -66,7 +66,7 @@ A research paper titled "A Genetic Algorithm Optimized Decision Tree SVM based S
 ##### Framework: 
 	Spring, Jersey (will change if a different language is chosen)
 ##### Database: 
-	MySQL
+	MongoDB
 ##### Dependency Management: 
 	Maven
 ##### Hosting: 
@@ -83,11 +83,11 @@ A research paper titled "A Genetic Algorithm Optimized Decision Tree SVM based S
 
 | #	| Task 	| Expected Completion Date | Completed (Y/N) |
 |---|-------|--------------------------|-----------------|
-|1. | Design and write the code to compute techinical indicators (features) used in the analysis. | 1/12/15 | N |
-|2. | Design and implement the machine learning data analysis tool used in the program. | 1/19/15 | N |
-|3. | Create an easily expandable database that will receive a daily feed of 5 inputs from a finance API. | 1/26/15 | N |
-|4. | Build a REST web service with an API to host the program. | 1/26/15 | N |
-|5. | Make the system extendable so that it includes many indices. | 1/26/15 | N |
+|1. | Design and write the code to compute techinical indicators (features) used in the analysis. | TBD | N |
+|2. | Design and implement the machine learning data analysis tool used in the program. | TBD | N |
+|3. | Create an easily expandable database that will receive a daily feed of 5 inputs from a finance API. | TBD | N |
+|4. | Build a REST web service with an API to host the program. | TBD | N |
+|5. | Make the system extendable so that it includes many indices. | TBD | N |
 |6. | Create a web display for the information and an interface for results. | TBD | N |
 |7. | Create phone applications (iOS, Android) to display information. | TBD | N |
 
@@ -159,6 +159,8 @@ The trading rule will be one of three rules:
 
 
 ## VII. Detailed Design - Database:
+
+The database will be in MongoDB.
 
 ### Schema
 
