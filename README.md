@@ -164,8 +164,13 @@ The database will be in MongoDB.
 
 ### Schema
 
-### Visual Diagram
+```javascript
+{"language": "javascript"}
+```
 
+```json
+{"language": "json"}
+```
 
 ## VIII. Detailed Design - RESTful Web Service:
 
