@@ -1,4 +1,4 @@
-package data;
+package data.entities;
 
 public class SimpleDate {
 	String month;

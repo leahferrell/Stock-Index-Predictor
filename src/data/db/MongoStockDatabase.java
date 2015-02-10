@@ -1,4 +1,4 @@
-package data;
+package data.db;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -6,7 +6,9 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.net.UnknownHostException;
 import java.util.Dictionary;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import technicalindicators.TradingDataSet;
 
@@ -17,7 +19,11 @@ import com.mongodb.DBCursor;
 import com.mongodb.DBObject;
 import com.mongodb.MongoClient;
 
-public class MongoStockDatabase implements StockDatabaseInterface {
+import data.entities.InputVector;
+import data.entities.SimpleDate;
+import data.entities.StockRecord;
+
+public class MongoStockDatabase implements StockDatabase {
 	private MongoClient mongo;
 	
 	public MongoStockDatabase() throws UnknownHostException{
@@ -41,8 +47,7 @@ public class MongoStockDatabase implements StockDatabaseInterface {
 	}
 
 	@Override
-	public List<StockRecord> getRecordFromPeriod(SimpleDate start,
-			SimpleDate end, String index) {
+	public List<StockRecord> getRecordFromPeriod(SimpleDate start, SimpleDate end, String index) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -76,8 +81,10 @@ public class MongoStockDatabase implements StockDatabaseInterface {
 	}
 	
 	@Override
-	public void insertAllDailyRecords(Dictionary<String, InputVector> inputSets) {
-		// TODO Auto-generated method stub
+	public void insertAllDailyRecords(Map<String, InputVector> inputSets) {
+		for(Map.Entry<String, InputVector> i : inputSets.entrySet()){
+			insertDailyRecord(i.getKey(), i.getValue());
+		}
 		
 	}
 

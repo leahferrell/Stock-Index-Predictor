@@ -1,4 +1,5 @@
-package data;
+package data.entities;
+
 
 //import java.text.NumberFormat;
 //import java.text.ParseException;

@@ -9,8 +9,8 @@ import java.util.Iterator;
 import java.util.Set;
 import java.util.TreeMap;
 
-import data.InputVector;
-import data.SimpleDate;
+import data.entities.InputVector;
+import data.entities.SimpleDate;
 
 public class StockIndexDatabase {
 	String filepath = "./data-files/djia-inputs.csv";

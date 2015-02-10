@@ -1,11 +1,14 @@
-package data;
+package data.db;
 
-import java.util.Dictionary;
 import java.util.List;
+import java.util.Map;
 
+import data.entities.InputVector;
+import data.entities.SimpleDate;
+import data.entities.StockRecord;
 import technicalindicators.TradingDataSet;
 
-public interface StockDatabaseInterface {
+public interface StockDatabase {
 	/*
 	 * CREATE
 	 * */
@@ -13,7 +16,7 @@ public interface StockDatabaseInterface {
 	
 	public void insertDailyRecord(String index, InputVector inputSet);
 	
-	public void insertAllDailyRecords(Dictionary<String,InputVector> inputSets);
+	public void insertAllDailyRecords(Map<String,InputVector> inputSets);
 	
 	/*
 	 * RETRIEVE

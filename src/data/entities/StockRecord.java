@@ -1,4 +1,4 @@
-package data;
+package data.entities;
 import technicalindicators.TradingDataSet;
 
 public class StockRecord {
