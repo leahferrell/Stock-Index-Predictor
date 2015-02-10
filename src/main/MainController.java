@@ -1,13 +1,18 @@
 package main;
 
-import data.StockIndexDatabase2;
+import java.net.UnknownHostException;
+import data.*;
+
 
 public class MainController {
 	public static void main(String[] args){
-		StockIndexDatabase2 db = new StockIndexDatabase2();
-		db.LoadDatabase();
-		System.out.println(db.toString());
-		System.out.println(db.getRecordFromToday().toString());
-		System.out.println(db.getRecordFromYesterday().toString());
+		try {
+			StockDatabaseInterface db = new MongoStockDatabase();
+			//db.createTableFromFile("djia");
+			db.deleteEntireIndex("djia");
+			db.printAllRecords("djia");
+		} catch (UnknownHostException e) {
+			e.printStackTrace();
+		}
 	}
 }
