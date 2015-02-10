@@ -35,6 +35,8 @@
 
 Over the past few months I have become increasingly interested in the worlds of investing, machine learning, and software engineering. I decided it would be best to merge all of these interests through a project to enhance my knowledge, and at the end have a cool/useful project to show off.
 
+This project is currently in progress. I will attempt to document my process as I go about creating this program.
+
 
 ## II. Influence:
 
@@ -162,7 +164,7 @@ The trading rule will be one of three rules:
 
 The database will be in MongoDB.
 
-### Schema
+### Potential Schema
 
 ```json
 "stock record":
