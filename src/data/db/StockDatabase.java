@@ -24,7 +24,7 @@ public interface StockDatabase {
 	
 	public StockRecord getRecordFromIndex(SimpleDate date, String index);
 	
-	public StockRecord getRecordFromIndex(int number, String index);
+	public StockRecord getRecordFromIndex(long number, String index);
 	
 	public List<StockRecord> getRecordFromPeriod(SimpleDate start, SimpleDate end, String index);
 	

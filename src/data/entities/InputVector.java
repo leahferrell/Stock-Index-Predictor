@@ -22,20 +22,38 @@ public class InputVector {
 	public void setOpen(String o){
 		open = parseDouble(o);
 	}
+	public void setOpen(Double o){
+		open = o;
+	}
 	public void setClose(String c){
 		close = parseDouble(c);
+	}
+	public void setClose(Double c){
+		close = c;
 	}
 	public void setVolume(String v){
 		volume = parseDouble(v);
 	}
+	public void setVolume(Double v){
+		volume = v;
+	}
 	public void setLow(String l){
 		low = parseDouble(l);
+	}
+	public void setLow(Double l){
+		low = l;
 	}
 	public void setHigh(String h){
 		high = parseDouble(h);
 	}
+	public void setHigh(Double h){
+		high = h;
+	}
 	public void setAdjClose(String a){
 		adjClose = parseDouble(a);
+	}
+	public void setAdjClose(Double a){
+		adjClose = a;
 	}
 	public SimpleDate getDay(){return day;}
 	public double getOpen(){return open;}

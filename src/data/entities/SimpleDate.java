@@ -5,10 +5,22 @@ public class SimpleDate {
 	int day;
 	int year;
 	public SimpleDate(String date){
-		String[] tokens = date.split("-");
-		day = Integer.parseInt(tokens[0]);
-		year = Integer.parseInt(tokens[2]);
-		month = tokens[1];
+		if(date != null){
+			String[] tokens = date.split("-");
+			day = Integer.parseInt(tokens[0]);
+			year = Integer.parseInt(tokens[2]);
+			month = tokens[1];
+		}
+		else{
+			day = 0;
+			year = 0;
+			month = "-";
+		}
+	}
+	public SimpleDate(int day, String month, int year){
+		this.month = month;
+		this.day = day;
+		this.year = year;
 	}
 	public String getMonth(){return month;}
 	public int getDay(){return day;}
@@ -37,6 +49,9 @@ public class SimpleDate {
 	}
 	public static SimpleDate getTodaysDate(){
 		return null;
+	}
+	public String getOriginalDateForm(){
+		return day+"-"+month+"-"+year;
 	}
 	public void decreaseDate(){
 		

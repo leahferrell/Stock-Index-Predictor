@@ -5,8 +5,6 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.net.UnknownHostException;
-import java.util.Dictionary;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -27,7 +25,8 @@ public class MongoStockDatabase implements StockDatabase {
 	private MongoClient mongo;
 	
 	public MongoStockDatabase() throws UnknownHostException{
-		this("djia");
+		//this("djia");
+		mongo = new MongoClient();
 	}
 	public MongoStockDatabase(String index) throws UnknownHostException{
 		mongo = new MongoClient();
@@ -36,14 +35,32 @@ public class MongoStockDatabase implements StockDatabase {
 	
 	@Override
 	public StockRecord getRecordFromIndex(SimpleDate date, String index) {
-		// TODO Auto-generated method stub
-		return null;
+		DB stockDB = mongo.getDB("stocks");
+		DBCollection collection = stockDB.getCollection(index.toUpperCase());
+		BasicDBObject query = new BasicDBObject("date",date.getOriginalDateForm());
+		DBCursor c = collection.find(query);
+		if(c.hasNext()){
+			DBObject todaysRecord = c.next();
+			StockRecord record = new StockRecord(todaysRecord);
+			return record;
+		}
+		else
+			return null;
 	}
 
 	@Override
-	public StockRecord getRecordFromIndex(int number, String index) {
-		// TODO Auto-generated method stub
-		return null;
+	public StockRecord getRecordFromIndex(long number, String index) {
+		DB stockDB = mongo.getDB("stocks");
+		DBCollection collection = stockDB.getCollection(index.toUpperCase());
+		BasicDBObject query = new BasicDBObject("record_id",number);
+		DBCursor c = collection.find(query);
+		if(c.hasNext()){
+			DBObject todaysRecord = c.next();
+			StockRecord record = new StockRecord(todaysRecord);
+			return record;
+		}
+		else
+			return null;
 	}
 
 	@Override
@@ -54,30 +71,51 @@ public class MongoStockDatabase implements StockDatabase {
 
 	@Override
 	public StockRecord getRecordFromToday(String index) {
-		// TODO Auto-generated method stub
-		return null;
+		DB stockDB = mongo.getDB("stocks");
+		DBCollection collection = stockDB.getCollection(index.toUpperCase());
+		long recordId = collection.count();
+		return getRecordFromIndex(recordId,index);
 	}
 
 	@Override
 	public StockRecord getRecordFromYesterday(String index) {
-		// TODO Auto-generated method stub
-		return null;
+		DB stockDB = mongo.getDB("stocks");
+		DBCollection collection = stockDB.getCollection(index.toUpperCase());
+		long recordId = collection.count()-1;
+		return getRecordFromIndex(recordId,index);
 	}
 
 	@Override
 	public void insertDailyRecord(String index, InputVector inputSet) {
-		DBObject document = new BasicDBObject();
-		document.put("date", inputSet.getDay().toString());
-		document.put("daily_open", inputSet.getOpen());
-		document.put("daily_high", inputSet.getHigh());
-		document.put("daily_low", inputSet.getLow());
-		document.put("daily_close", inputSet.getClose());
-		document.put("trading_volume", inputSet.getVolume());
-		document.put("daily_adjclose", inputSet.getAdjClose());
+		DBObject stock_record = new BasicDBObject();
+		DBObject daily_input = new BasicDBObject();
+		
+		long yesterdayRecordId = getCurrentRecordId(index);
+		
+		stock_record.put("stock_index", index);
+		stock_record.put("record_id", yesterdayRecordId+1);
+		stock_record.put("yesterdays_record", yesterdayRecordId);
+		stock_record.put("date", inputSet.getDay().getOriginalDateForm());
+		
+		daily_input.put("daily_open", inputSet.getOpen());
+		daily_input.put("daily_high", inputSet.getHigh());
+		daily_input.put("daily_low", inputSet.getLow());
+		daily_input.put("daily_close", inputSet.getClose());
+		daily_input.put("trading_volume", inputSet.getVolume());
+		daily_input.put("daily_adjclose", inputSet.getAdjClose());
+		
+		stock_record.put("daily_input", daily_input);
+		
 		DB stockDB = mongo.getDB("stocks");
 		DBCollection collection = stockDB.getCollection(index.toUpperCase());
-		collection.insert(document);
+		collection.insert(stock_record);
 		
+	}
+	
+	private long getCurrentRecordId(String index){
+		DB stockDB = mongo.getDB("stocks");
+		DBCollection collection = stockDB.getCollection(index.toUpperCase());
+		return collection.count();
 	}
 	
 	@Override
@@ -94,7 +132,10 @@ public class MongoStockDatabase implements StockDatabase {
 		
 	}
 	
-	//These methods are used in setup testing
+	/*
+	 * These methods will be deleted after testing is done.
+	 * 
+	 * */
 	
 	@Override
 	public void deleteEntireIndex(String index) {
@@ -147,7 +188,12 @@ public class MongoStockDatabase implements StockDatabase {
 		DB stockDB = mongo.getDB("stocks");
 		DBCursor c = stockDB.getCollection(index.toUpperCase()).find();
 		while(c.hasNext()){
-			System.out.println(c.next());
+			Map<?,?> record = c.next().toMap();
+			System.out.print("{");
+			for(Map.Entry<?, ?> entry : record.entrySet()){
+				System.out.println("\""+entry.getKey()+"\":"+entry.getValue());
+			}
+			System.out.println("}");
 		}
 	}
 
