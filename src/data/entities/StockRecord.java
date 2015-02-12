@@ -9,7 +9,7 @@ public class StockRecord {
 	InputVector dailyInput;
 	Long yesterdaysRecordId;
 	TechnicalIndicatorSet technicalIndicators;
-	HelperIndicatorSet helperIndicators;
+	HelperDataSet helperIndicators;
 	
 	public StockRecord(){
 		
@@ -32,12 +32,14 @@ public class StockRecord {
 		
 		yesterdaysRecordId = (Long) obj.get("yesterdays_record");
 		
-		if(obj.containsField("helper_data") && obj.containsField("technical_indicators")){
-			parseIndicators((DBObject) obj.get("helper_data"), (DBObject) obj.get("technical_indicators"));
+		if(obj.containsField("helper_data")){
+			helperIndicators = new HelperDataSet((DBObject) obj.get("helper_data"));
+		}
+			
+		if(obj.containsField("technical_indicators")){
+			technicalIndicators = new TechnicalIndicatorSet((DBObject) obj.get("technical_indicators"));
 		}
 	}
-	
-	private void parseIndicators(DBObject h, DBObject t){}
 	
 	public long getId(){return recordId;}
 	
@@ -61,7 +63,7 @@ public class StockRecord {
 	
 	public TechnicalIndicatorSet getAllTechnicalIndicators(){return technicalIndicators;}
 	
-	public HelperIndicatorSet getHelperIndicators(){return helperIndicators;}
+	public HelperDataSet getHelperIndicators(){return helperIndicators;}
 	
 	public boolean hasIndicators(){
 		return false;

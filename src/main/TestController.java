@@ -10,7 +10,7 @@ import data.entities.SimpleDate;
 import data.entities.StockRecord;
 
 
-public class MainController {
+public class TestController {
 	private static String index = "djia";
 	public static void tryInsertRecord(){
 		try {
@@ -46,6 +46,24 @@ public class MainController {
 		}
 	}
 	
+	public static void tryUpdateRecord(){
+		try {
+			StockDatabase db = new MongoStockDatabase();
+			//db.printAllRecords(index);
+			
+			StockRecord test = db.getRecordFromToday(index);
+			
+			String key = "nvi";
+			double value = 11.0;
+			
+			db.addTechnicalIndicatorToRecord(index, test.getId(), key, value);
+			db.printAllRecords(index);
+			
+		} catch (UnknownHostException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	public static void tryDailyInputClient(){
 		DailyInputClient inputClient = new FlatDailyInputClient();
 		inputClient.connectToServer();
@@ -66,6 +84,6 @@ public class MainController {
 	public static void main(String[] args){
 		//tryDailyInputClient();
 		//tryInsertRecord();
-		tryGetRecord();
+		tryUpdateRecord();
 	}
 }

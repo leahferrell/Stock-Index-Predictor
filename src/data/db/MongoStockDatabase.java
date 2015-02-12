@@ -23,10 +23,12 @@ import data.entities.StockRecord;
 
 public class MongoStockDatabase implements StockDatabase {
 	private MongoClient mongo;
+	private DB stockDB;
 	
 	public MongoStockDatabase() throws UnknownHostException{
 		//this("djia");
 		mongo = new MongoClient();
+		stockDB = mongo.getDB("stocks");
 	}
 	public MongoStockDatabase(String index) throws UnknownHostException{
 		mongo = new MongoClient();
@@ -71,7 +73,7 @@ public class MongoStockDatabase implements StockDatabase {
 
 	@Override
 	public StockRecord getRecordFromToday(String index) {
-		DB stockDB = mongo.getDB("stocks");
+		//DB stockDB = mongo.getDB("stocks");
 		DBCollection collection = stockDB.getCollection(index.toUpperCase());
 		long recordId = collection.count();
 		return getRecordFromIndex(recordId,index);
@@ -79,7 +81,7 @@ public class MongoStockDatabase implements StockDatabase {
 
 	@Override
 	public StockRecord getRecordFromYesterday(String index) {
-		DB stockDB = mongo.getDB("stocks");
+		//DB stockDB = mongo.getDB("stocks");
 		DBCollection collection = stockDB.getCollection(index.toUpperCase());
 		long recordId = collection.count()-1;
 		return getRecordFromIndex(recordId,index);
@@ -106,14 +108,14 @@ public class MongoStockDatabase implements StockDatabase {
 		
 		stock_record.put("daily_input", daily_input);
 		
-		DB stockDB = mongo.getDB("stocks");
+		//DB stockDB = mongo.getDB("stocks");
 		DBCollection collection = stockDB.getCollection(index.toUpperCase());
 		collection.insert(stock_record);
 		
 	}
 	
 	private long getCurrentRecordId(String index){
-		DB stockDB = mongo.getDB("stocks");
+		//DB stockDB = mongo.getDB("stocks");
 		DBCollection collection = stockDB.getCollection(index.toUpperCase());
 		return collection.count();
 	}
@@ -132,6 +134,36 @@ public class MongoStockDatabase implements StockDatabase {
 		
 	}
 	
+	public void addTechnicalIndicatorToRecord(String index, long recordId, String key, double value){
+		//DB stockDB = mongo.getDB("stocks");
+		DBCollection collection = stockDB.getCollection(index.toUpperCase());
+		BasicDBObject query = new BasicDBObject("record_id",recordId);
+		BasicDBObject newDoc = new BasicDBObject("$set",new BasicDBObject("technical_indicator."+key,value));
+		collection.update(query, newDoc);
+		
+	}
+	
+	public void addTechnicalIndicatorToRecord(String index, SimpleDate date, String key, double value){
+		DBCollection collection = stockDB.getCollection(index.toUpperCase());
+		BasicDBObject query = new BasicDBObject("date",date.getOriginalDateForm());
+		BasicDBObject newDoc = new BasicDBObject("$set",new BasicDBObject("technical_indicator."+key,value));
+		collection.update(query, newDoc);
+	}
+	
+	public void addHelperDataToRecord(String index, long recordId, String key, double value){
+		DBCollection collection = stockDB.getCollection(index.toUpperCase());
+		BasicDBObject query = new BasicDBObject("record_id",recordId);
+		BasicDBObject newDoc = new BasicDBObject("$set",new BasicDBObject("helper_data."+key,value));
+		collection.update(query, newDoc);
+	}
+	
+	public void addHelperDataToRecord(String index, SimpleDate date, String key, double value){
+		DBCollection collection = stockDB.getCollection(index.toUpperCase());
+		BasicDBObject query = new BasicDBObject("date",date.getOriginalDateForm());
+		BasicDBObject newDoc = new BasicDBObject("$set",new BasicDBObject("helper_data."+key,value));
+		collection.update(query, newDoc);
+	}
+	
 	/*
 	 * These methods will be deleted after testing is done.
 	 * 
@@ -139,7 +171,7 @@ public class MongoStockDatabase implements StockDatabase {
 	
 	@Override
 	public void deleteEntireIndex(String index) {
-		DB stockDB = mongo.getDB("stocks");
+		//DB stockDB = mongo.getDB("stocks");
 		DBCollection collection = stockDB.getCollection(index.toUpperCase());
 		collection.drop();
 	}
@@ -185,7 +217,7 @@ public class MongoStockDatabase implements StockDatabase {
 
 	@Override
 	public void printAllRecords(String index){
-		DB stockDB = mongo.getDB("stocks");
+		//DB stockDB = mongo.getDB("stocks");
 		DBCursor c = stockDB.getCollection(index.toUpperCase()).find();
 		while(c.hasNext()){
 			Map<?,?> record = c.next().toMap();

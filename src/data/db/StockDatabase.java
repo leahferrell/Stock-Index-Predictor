@@ -39,6 +39,14 @@ public interface StockDatabase {
 	 * */
 	public void addIndicatorData(String index, TradingDataSet tradingData);
 	
+	public void addTechnicalIndicatorToRecord(String index, long recordId, String key, double value);
+	
+	public void addTechnicalIndicatorToRecord(String index, SimpleDate date, String key, double value);
+	
+	public void addHelperDataToRecord(String index, long recordId, String key, double value);
+	
+	public void addHelperDataToRecord(String index, SimpleDate date, String key, double value);
+	
 	/*
 	 * DELETE
 	 * */
