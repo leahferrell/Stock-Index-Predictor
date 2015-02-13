@@ -46,6 +46,7 @@ public class StockRecord {
 			technicalIndicators = new TechnicalIndicatorSet((DBObject) obj.get("technical_indicators"));
 		}
 	}
+	public String getIndex(){return stockIndex;}
 	
 	public long getId(){return recordId;}
 	
@@ -108,6 +109,14 @@ public class StockRecord {
 	}
 	public Double getTechicalIndicator(Indicator i){
 		return technicalIndicators.getIndicator(i);
+	}
+	public boolean hasChanges(){
+		if(helperIndicators.getAllChanges() != null || technicalIndicators.getAllChanges() != null){
+			return true;
+		}
+		else{
+			return false;
+		}
 	}
 	public DBObject getAllChanges(){
 		BasicDBObject changes = new BasicDBObject();

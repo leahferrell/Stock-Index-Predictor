@@ -8,7 +8,7 @@ import java.net.UnknownHostException;
 import java.util.List;
 import java.util.Map;
 
-import technicalindicators.TradingDataSet;
+//import technicalindicators.TradingDataSet;
 
 import com.mongodb.BasicDBObject;
 import com.mongodb.DB;
@@ -128,11 +128,12 @@ public class MongoStockDatabase implements StockDatabase {
 		
 	}
 
-	@Override
+	//The following methods will probably be deleted
+	/*@Override
 	public void addIndicatorData(String index, TradingDataSet tradingData) {
 		// TODO Auto-generated method stub
 		
-	}
+	}*/
 	
 	public void addTechnicalIndicatorToRecord(String index, long recordId, String key, double value){
 		//DB stockDB = mongo.getDB("stocks");
@@ -162,6 +163,19 @@ public class MongoStockDatabase implements StockDatabase {
 		BasicDBObject query = new BasicDBObject("date",date.getOriginalDateForm());
 		BasicDBObject newDoc = new BasicDBObject("$set",new BasicDBObject("helper_data."+key,value));
 		collection.update(query, newDoc);
+	}
+	//End possibly unneeded methods
+	
+	
+	public void updateStockRecord(StockRecord newRecord){
+		if(newRecord.hasChanges()){
+			DBCollection collection = stockDB.getCollection(newRecord.getIndex().toUpperCase());
+			DBObject changes = newRecord.getAllChanges();
+			DBObject query = new BasicDBObject("record_id", newRecord.getId());
+			collection.update(query, changes);
+			
+		}
+		
 	}
 	
 	/*

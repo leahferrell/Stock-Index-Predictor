@@ -6,7 +6,7 @@ import java.util.Map;
 import data.entities.InputVector;
 import data.entities.SimpleDate;
 import data.entities.StockRecord;
-import technicalindicators.TradingDataSet;
+//import technicalindicators.TradingDataSet;
 
 public interface StockDatabase {
 	/*
@@ -37,7 +37,7 @@ public interface StockDatabase {
 	/*
 	 * UPDATE
 	 * */
-	public void addIndicatorData(String index, TradingDataSet tradingData);
+	//public void addIndicatorData(String index, TradingDataSet tradingData);
 	
 	public void addTechnicalIndicatorToRecord(String index, long recordId, String key, double value);
 	

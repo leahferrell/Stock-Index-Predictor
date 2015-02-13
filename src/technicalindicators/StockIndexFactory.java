@@ -3,11 +3,24 @@ import java.io.File;
 
 import data.entities.enums.TradingIndex;
 
-public class TradingDataSet {
+/**
+ * I am probably going to change the name of this later.
+ * Having "Factory" in the title is rather misleading, since this doesn't follow
+ * the factory design pattern commonly used in Java. It makes sense in the 
+ * semantic meaning of the word factory, but it doesn't create different types of
+ * "stock index" objects. There is only one type.
+ * I don't know. I'll come back to this later.
+ * 
+ * */
+
+public class StockIndexFactory {
 	private TradingIndex index;
-	public TradingDataSet(TradingIndex i){
+	public StockIndexFactory(TradingIndex i){
 		index = i;
 		setUpDatabase();
+	}
+	public StockIndexFactory getInstance(){
+		return null;
 	}
 	private void setUpDatabase(){
 		File database = new File(index.getDatabaseName());
