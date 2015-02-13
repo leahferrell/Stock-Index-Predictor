@@ -1,5 +1,8 @@
 package technicalindicators;
 
+import data.entities.enums.Indicator;
+import data.entities.enums.TradingIndex;
+
 public class Features {
 	static int TOTAL_FEATURES = 28;
 	static double[] features = new double[TOTAL_FEATURES];

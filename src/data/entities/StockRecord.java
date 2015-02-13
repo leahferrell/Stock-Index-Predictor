@@ -1,5 +1,11 @@
 package data.entities;
+import java.util.Map;
+
+import com.mongodb.BasicDBObject;
 import com.mongodb.DBObject;
+
+import data.entities.enums.HelperIndicator;
+import data.entities.enums.Indicator;
 
 public class StockRecord {
 	String _id;
@@ -8,8 +14,8 @@ public class StockRecord {
 	Long recordId;
 	InputVector dailyInput;
 	Long yesterdaysRecordId;
-	TechnicalIndicatorSet technicalIndicators;
-	HelperDataSet helperIndicators;
+	TechnicalIndicatorSet technicalIndicators = null;
+	HelperDataSet helperIndicators = null;
 	
 	public StockRecord(){
 		
@@ -59,13 +65,64 @@ public class StockRecord {
 	
 	public SimpleDate getDate(){return date;}
 	
-	public InputVector getDailyInputs(){return dailyInput;}
+	public InputVector getAllDailyInputs(){return dailyInput;}
 	
 	public TechnicalIndicatorSet getAllTechnicalIndicators(){return technicalIndicators;}
 	
 	public HelperDataSet getHelperIndicators(){return helperIndicators;}
 	
-	public boolean hasIndicators(){
-		return false;
+	public boolean hasAnyTechnicalIndicators(){
+		if(technicalIndicators == null){
+			return false;
+		}
+		else{
+			return true;
+		}
+	}
+	public boolean hasAnyHelperIndicators(){
+		if(helperIndicators == null){
+			return false;
+		}
+		else{
+			return true;
+		}
+	}
+	public boolean hasTechnicalIndicator(Indicator t){
+		if(technicalIndicators == null){
+			return false;
+		}
+		else{
+			return technicalIndicators.hasIndicator(t);
+		}
+	}
+	public boolean hasHelperIndicator(HelperIndicator h){
+		if(helperIndicators == null){
+			return false;
+		}
+		else{
+			return helperIndicators.hasIndicator(h);
+		}
+	}
+	public Double getHelperIndicator(HelperIndicator h){
+		return helperIndicators.getIndicator(h);
+	}
+	public Double getTechicalIndicator(Indicator i){
+		return technicalIndicators.getIndicator(i);
+	}
+	public DBObject getAllChanges(){
+		BasicDBObject changes = new BasicDBObject();
+		//go through helper indicators
+		Map<String,Double> hChanges = helperIndicators.getAllChanges();
+		for(Map.Entry<String, Double> h : hChanges.entrySet()){
+			changes.append("helper_data."+h.getKey(), h.getValue());
+		}
+		//go through technical indicators
+		Map<String,Double> tChanges = technicalIndicators.getAllChanges();
+		for(Map.Entry<String, Double> t : tChanges.entrySet()){
+			changes.append("technical_indicators."+t.getKey(), t.getValue());
+		}
+		
+		BasicDBObject newDoc = new BasicDBObject("$set",changes);
+		return newDoc;
 	}
 }

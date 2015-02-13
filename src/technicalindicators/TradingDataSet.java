@@ -1,6 +1,8 @@
 package technicalindicators;
 import java.io.File;
 
+import data.entities.enums.TradingIndex;
+
 public class TradingDataSet {
 	private TradingIndex index;
 	public TradingDataSet(TradingIndex i){

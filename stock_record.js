@@ -19,9 +19,9 @@
 	"yesterdays_record": "<ObjectId>",
 	
 	"helper_data": {
-		"exponential_moving_average": "<double>",
-		"simple_moving_average": "<double>",
-		"accumulation_distribution_line": "<double>",
+		"ema": "<double>",
+		"sma": "<double>",
+		"adl": "<double>",
 		"true_range_high": "<double>",
 		"true_range_low": "<double>",
 		"todays_accumulation_distribution": "<double>",
@@ -51,6 +51,8 @@
 		"median_price": "<double>",
 		"weighted_close": "<double>",
 		"williams_r": "<double>",
+		"price_rate_of_change": "<double>",
+		"williams_a_d": "<double>",
 		"bollinger_upper": "<double>",
 		"bollinger_lower": "<double>",
 		"bollinger_middle": "<double>",

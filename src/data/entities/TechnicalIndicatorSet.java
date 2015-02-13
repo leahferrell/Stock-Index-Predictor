@@ -1,36 +1,42 @@
 package data.entities;
 
+import java.util.Map;
+import java.util.TreeMap;
+
 import com.mongodb.DBObject;
 
+import data.entities.enums.Indicator;
+
 public class TechnicalIndicatorSet {
-	Double pvi;
-	Double nvi;
-	Double obv;
-	Double typical_volume;
-	Double price_volume_trend;
-	Double a_d_oscillator;
-	Double chaikins_oscillator;
-	Double chaikins_volatility;
-	Double acceleration;
-	Double highest_high;
-	Double lowest_low;
-	Double relative_strength_index;
-	Double macd_nine_period_moving_average;
-	Double macd_line;
-	Double momentum;
-	Double s_o_k;
-	Double s_o_d;
-	Double typical_price;
-	Double median_price;
-	Double weighted_close;
-	Double williams_r;
-	Double bollinger_upper;
-	Double bollinger_lower;
-	Double bollinger_middle;
-	Double moving_average_25;
-	Double moving_average_65;
+	static int numOfIndicators = Indicator.values().length;
+	Double[] dataSet = new Double[numOfIndicators];
+	Map<String, Double> changeSet = new TreeMap<String, Double>();
 	
 	public TechnicalIndicatorSet(DBObject t){
-		
+		for(Indicator i : Indicator.values()){
+			if(t.containsField(i.getKey())){
+				dataSet[i.getValue()] = (Double) t.get(i.getKey());
+			}
+		}
+	}
+	
+	public Map<String, Double> getAllChanges(){
+		return changeSet;
+	}
+	
+	public void updateIndicator(Indicator h, Double v){
+		dataSet[h.getValue()] = v;
+		changeSet.put(h.getKey(), v);
+	}
+	public Double getIndicator(Indicator h){
+		return dataSet[h.getValue()];
+	}
+	public boolean hasIndicator(Indicator h){
+		if(dataSet[h.getValue()] != null){
+			return true;
+		}
+		else{
+			return false;
+		}
 	}
 }

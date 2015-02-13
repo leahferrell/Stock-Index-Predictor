@@ -1,5 +1,7 @@
 package technicalindicators;
 
+import data.entities.enums.TradingIndex;
+
 public class Computation {
 	private TradingIndex index;
 	private TradingDataSet dataSet;
