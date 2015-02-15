@@ -109,12 +109,43 @@ public class TestController {
 		System.out.println("TV = " + tv);
 	}
 	
+	public static void tryComputationPVT(){
+		double pvt = c.priceVolumeTrend();
+		System.out.println("PVT = " + pvt);
+	}
+	
+	public static void tryComputationADO(){
+		c.accumulationDistributionOscillator();
+	}
+	
+	public static void tryComputationHighLow(){
+		double high = c.highestHigh();
+		double low = c.lowestLow();
+		System.out.println("High: "+ high + " Low: "+low);
+	}
+	
+	public static void tryComputationMo(){
+		double mo = c.momentum();
+		System.out.println("Momentum: "+mo);
+	}
+	
+	public static void tryComputationK(){
+		double k = c.stochasticOscillatorK();
+		System.out.println("K: "+k);
+	}
+	
+	public static void tryComputationTM(){
+		double tp = c.typicalPrice();
+		double tm = c.medianPrice();
+		System.out.println("Typical Price: "+tp+ " Median Price: "+tm);
+	}
+	
 	public static void tryComputationUpdate(){
 		c.storeComputations();
 		try {
 			MongoStockDatabase db = new MongoStockDatabase();
 			//db.printAllRecords(index);
-			for(int i = 10; i <= 12; i++)
+			for(int i = 1; i <= 1; i++)
 				db.printRecord(index, new Long(i));
 		} catch (UnknownHostException e) {
 			e.printStackTrace();
@@ -124,7 +155,13 @@ public class TestController {
 	public static void main(String[] args){
 		//tryComputationPVI();
 		//tryComputationOBV();
-		tryComputationTV();
+		//tryComputationTV();
+		//tryComputationPVT();
+		//tryComputationADO();
+		//tryComputationHighLow();
+		//tryComputationMo();
+		//tryComputationK();
+		tryComputationTM();
 		tryComputationUpdate();
 	}
 }

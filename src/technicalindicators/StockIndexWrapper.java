@@ -11,7 +11,7 @@ import data.entities.enums.TradingIndex;
 public class StockIndexWrapper {
 	private TradingIndex index;
 	private MongoStockDatabase db;
-	private long dayId = 12;	//TODO
+	private long dayId = 1;	//TODO
 	private StockRecord todayRecord;
 	private StockRecord yesterdayRecord;
 	public StockIndexWrapper(TradingIndex i){
@@ -60,7 +60,15 @@ public class StockIndexWrapper {
 			return yesterdayRecord.getClose();
 		}
 	}
-	public Double getCloseFromDay(int day){
+	public Double getCloseFromDay(int daysPrevious){
+		long day;
+		int id = (int) todayRecord.getId();
+		if(daysPrevious > id){
+			day = 1;
+		}
+		else{
+			day = id - (daysPrevious-1);
+		}
 		StockRecord s = db.getRecordFromIndex(day, index.getDatabaseName());
 		if(s != null)
 			return s.getClose();
@@ -135,13 +143,39 @@ public class StockIndexWrapper {
 			return null;
 	}
 	public Double[] getHighInPeriod(int period){
-		//TODO
-		Double[] highSet = new Double[period];
+		Double[] highSet;
+		int setSize;
+		long id = todayRecord.getId();
+		if(period < todayRecord.getId())
+			setSize = period;
+		else
+			setSize = (int)id;
+		
+		highSet = new Double[setSize];
+		int count = 0;
+		for(int i = setSize-1; i >= 0; i--){
+			highSet[count] = db.getRecordFromIndex(id - i, index.getDatabaseName()).getHigh();
+			count++;
+		}
+		
 		return highSet;
 	}
 	public Double[] getLowInPeriod(int period){
-		//TODO
-		Double[] lowSet = new Double[period];
+		Double[] lowSet;
+		int setSize;
+		long id = todayRecord.getId();
+		if(period < todayRecord.getId())
+			setSize = period;
+		else
+			setSize = (int)id;
+		
+		lowSet = new Double[setSize];
+		int count = 0;
+		for(int i = setSize-1; i >= 0; i--){
+			lowSet[count] = db.getRecordFromIndex(id - i, index.getDatabaseName()).getLow();
+			count++;
+		}
+		
 		return lowSet;
 	}
 	public Double getMedianPriceToday(){

@@ -125,12 +125,17 @@ public class Computation {
 	
 	public Double priceVolumeTrend(){
 		Double pvt;
-		pvt = indexData.getPVTYesterday()
-				+ indexData.getVolumeToday()
-				* (indexData.getCloseToday() - indexData.getCloseYesterday())
-				/ indexData.getCloseYesterday();
-		indexData.setPVTToday(pvt);
+		if(indexData.getPVTYesterday() == null){
+			pvt = indexData.getVolumeToday();
+		}
+		else{
+			pvt = indexData.getPVTYesterday()
+					+ indexData.getVolumeToday()
+					* (indexData.getCloseToday() - indexData.getCloseYesterday())
+					/ indexData.getCloseYesterday();
+		}
 		
+		indexData.setTechnicalIndicator(Indicator.PRICE_VOLUME_TREND, pvt);
 		return pvt;
 	}
 	
@@ -140,16 +145,19 @@ public class Computation {
 				- (indexData.getHighToday() - indexData.getCloseToday()))
 				/ (indexData.getHighToday() - indexData.getLowToday())
 				* indexData.getVolumeToday();
-		indexData.setADOscillator(ad);
+		indexData.setTechnicalIndicator(Indicator.ACCUMULATION_DISTRIBUTION_OSCILLATOR, ad);
 		return ad;
 	}
 	public Double chaikinsOscillator(){
+		//TODO
 		return 0.0;
 	}
 	public Double chaikinsVolatility(){
+		//TODO
 		return 0.0;
 	}
 	public Double acceleration(){
+		//TODO
 		Double oscillator, acceleration;
 		oscillator = simpleMovingAverage(indexData.getMedianPriceInPeriod(5))
 				- simpleMovingAverage(indexData.getMedianPriceInPeriod(34));
@@ -160,24 +168,29 @@ public class Computation {
 	public Double highestHigh(){
 		Double[] highSet = indexData.getHighInPeriod(10);
 		Double maxHigh = max(highSet);
+		indexData.setTechnicalIndicator(Indicator.HIGHEST_HIGH, maxHigh);
 		return maxHigh;
 	}
 	public Double lowestLow(){
 		Double[] lowSet = indexData.getLowInPeriod(10);
 		Double minLow = min(lowSet);
+		indexData.setTechnicalIndicator(Indicator.LOWEST_LOW, minLow);
 		return minLow;
 	}
 	public Double relativeStrengthIndex(){
+		//TODO
 		Double rsi;
 		rsi = 100 - 100 / (1 + relativeStrength());
 		return rsi;
 	}
 	public Double macdNinePeriodMovingAverage(){
+		//TODO
 		Double nine;
 		nine = exponentialMovingAverage(9,indexData.getMACDLine());
 		return nine;
 	}
 	public Double macdLine(){
+		//TODO
 		Double line;
 		line = exponentialMovingAverage(12,0.0) - exponentialMovingAverage(26, 0.0);
 		indexData.setMACDLine(line);
@@ -187,6 +200,7 @@ public class Computation {
 		int day = 10;
 		Double mo;
 		mo = indexData.getCloseToday() - indexData.getCloseFromDay(day);
+		indexData.setTechnicalIndicator(Indicator.MOMENTUM, mo);
 		return mo;
 	}
 	public Double stochasticOscillatorK(){
@@ -195,20 +209,23 @@ public class Computation {
 		Double high = max(indexData.getHighInPeriod(10));
 		osc = ((indexData.getCloseToday() - low)
 				/ (high - low)) * 100;
-		indexData.setKToday(osc);
+		indexData.setTechnicalIndicator(Indicator.STOCHASTIC_OSCILLATOR_K, osc);
 		return osc;
 	}
 	public Double stochasticOscillatorD(){
+		//TODO
 		return simpleMovingAverage(indexData.getKInPeriod(3));
 	}
 	public Double typicalPrice(){
 		Double[] values = {indexData.getHighToday(), indexData.getLowToday(), indexData.getCloseToday()};
 		Double price = average(values);
+		indexData.setTechnicalIndicator(Indicator.TYPICAL_PRICE, price);
 		return price;
 	}
 	public Double medianPrice(){
 		Double[] values = {indexData.getHighToday(), indexData.getLowToday()};
 		Double price = average(values);
+		indexData.setTechnicalIndicator(Indicator.MEDIAN_PRICE, price);
 		indexData.setMedianPriceToday(price);
 		return price;
 	}
