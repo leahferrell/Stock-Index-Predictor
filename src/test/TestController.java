@@ -1,17 +1,20 @@
-package main;
+package test;
 
 import java.net.UnknownHostException;
 
+import technicalindicators.Computation;
 import data.dailyinputs.*;
 //import data.*;
 import data.db.*;
 import data.entities.InputVector;
 import data.entities.SimpleDate;
 import data.entities.StockRecord;
+import data.entities.enums.TradingIndex;
 
 
 public class TestController {
 	private static String index = "djia";
+	private static Computation c = new Computation(TradingIndex.DOW_JONES_INDUSTRIAL_AVERAGE);
 	public static void tryInsertRecord(){
 		try {
 			StockDatabase db = new MongoStockDatabase();
@@ -25,6 +28,16 @@ public class TestController {
 			
 			InputVector input2 = inputClient.getInputForIndex(new SimpleDate(13,"Jan",15));
 			db.insertDailyRecord(index, input2);
+			db.printAllRecords(index);
+		} catch (UnknownHostException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public static void createDatabase(){
+		try {
+			StockDatabase db = new MongoStockDatabase();
+			db.createTableFromFile(index);
 			db.printAllRecords(index);
 		} catch (UnknownHostException e) {
 			e.printStackTrace();
@@ -81,9 +94,37 @@ public class TestController {
 		}
 	}
 	
+	public static void tryComputationPVI(){
+		double pvi = c.positiveVolumeIndex();
+		System.out.println("PVI = " + pvi);
+	}
+	
+	public static void tryComputationOBV(){
+		double obv = c.onBalanceVolume();
+		System.out.println("OBV = " + obv);
+	}
+	
+	public static void tryComputationTV(){
+		double tv = c.typicalVolume();
+		System.out.println("TV = " + tv);
+	}
+	
+	public static void tryComputationUpdate(){
+		c.storeComputations();
+		try {
+			MongoStockDatabase db = new MongoStockDatabase();
+			//db.printAllRecords(index);
+			for(int i = 10; i <= 12; i++)
+				db.printRecord(index, new Long(i));
+		} catch (UnknownHostException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	public static void main(String[] args){
-		//tryDailyInputClient();
-		//tryInsertRecord();
-		tryUpdateRecord();
+		//tryComputationPVI();
+		//tryComputationOBV();
+		tryComputationTV();
+		tryComputationUpdate();
 	}
 }

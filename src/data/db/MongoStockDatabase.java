@@ -243,4 +243,16 @@ public class MongoStockDatabase implements StockDatabase {
 		}
 	}
 
+	public void printRecord(String index, Long id){
+		BasicDBObject query = new BasicDBObject("record_id",id);
+		DBCursor c = stockDB.getCollection(index.toUpperCase()).find(query);
+		while(c.hasNext()){
+			Map<?,?> record = c.next().toMap();
+			System.out.print("{");
+			for(Map.Entry<?, ?> entry : record.entrySet()){
+				System.out.println("\""+entry.getKey()+"\":"+entry.getValue());
+			}
+			System.out.println("}");
+		}
+	}
 }

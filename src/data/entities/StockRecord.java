@@ -41,11 +41,18 @@ public class StockRecord {
 		if(obj.containsField("helper_data")){
 			helperIndicators = new HelperDataSet((DBObject) obj.get("helper_data"));
 		}
+		else{
+			helperIndicators = new HelperDataSet();
+		}
 			
 		if(obj.containsField("technical_indicators")){
 			technicalIndicators = new TechnicalIndicatorSet((DBObject) obj.get("technical_indicators"));
 		}
+		else{
+			technicalIndicators = new TechnicalIndicatorSet();
+		}
 	}
+	
 	public String getIndex(){return stockIndex;}
 	
 	public long getId(){return recordId;}
@@ -80,6 +87,7 @@ public class StockRecord {
 			return true;
 		}
 	}
+	
 	public boolean hasAnyHelperIndicators(){
 		if(helperIndicators == null){
 			return false;
@@ -88,6 +96,7 @@ public class StockRecord {
 			return true;
 		}
 	}
+	
 	public boolean hasTechnicalIndicator(Indicator t){
 		if(technicalIndicators == null){
 			return false;
@@ -96,6 +105,7 @@ public class StockRecord {
 			return technicalIndicators.hasIndicator(t);
 		}
 	}
+	
 	public boolean hasHelperIndicator(HelperIndicator h){
 		if(helperIndicators == null){
 			return false;
@@ -104,12 +114,15 @@ public class StockRecord {
 			return helperIndicators.hasIndicator(h);
 		}
 	}
+	
 	public Double getHelperIndicator(HelperIndicator h){
 		return helperIndicators.getIndicator(h);
 	}
+	
 	public Double getTechicalIndicator(Indicator i){
 		return technicalIndicators.getIndicator(i);
 	}
+	
 	public boolean hasChanges(){
 		if(helperIndicators.getAllChanges() != null || technicalIndicators.getAllChanges() != null){
 			return true;
@@ -118,6 +131,7 @@ public class StockRecord {
 			return false;
 		}
 	}
+	
 	public DBObject getAllChanges(){
 		BasicDBObject changes = new BasicDBObject();
 		//go through helper indicators
@@ -133,5 +147,12 @@ public class StockRecord {
 		
 		BasicDBObject newDoc = new BasicDBObject("$set",changes);
 		return newDoc;
+	}
+	
+	public void setTechnicalIndicator(Indicator i, Double value){
+		technicalIndicators.updateIndicator(i, value);
+	}
+	public void setHelperIndicator(HelperIndicator h, Double value){
+		helperIndicators.updateIndicator(h, value);
 	}
 }

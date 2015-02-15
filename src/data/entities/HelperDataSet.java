@@ -12,6 +12,10 @@ public class HelperDataSet {
 	Double[] dataSet = new Double[numOfIndicators];
 	Map<String, Double> changeSet = new TreeMap<String, Double>();
 	
+	public HelperDataSet(){
+		
+	}
+	
 	public HelperDataSet(DBObject h){
 		for(HelperIndicator i : HelperIndicator.values()){
 			if(h.containsField(i.getKey())){

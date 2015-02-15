@@ -12,6 +12,10 @@ public class TechnicalIndicatorSet {
 	Double[] dataSet = new Double[numOfIndicators];
 	Map<String, Double> changeSet = new TreeMap<String, Double>();
 	
+	public TechnicalIndicatorSet(){
+		
+	}
+	
 	public TechnicalIndicatorSet(DBObject t){
 		for(Indicator i : Indicator.values()){
 			if(t.containsField(i.getKey())){

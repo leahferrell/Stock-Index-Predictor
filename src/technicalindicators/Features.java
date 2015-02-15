@@ -5,7 +5,7 @@ import data.entities.enums.TradingIndex;
 
 public class Features {
 	static int TOTAL_FEATURES = 28;
-	static double[] features = new double[TOTAL_FEATURES];
+	static Double[] features = new Double[TOTAL_FEATURES];
 	static boolean compute = true;
 	public double getFeature(Indicator i){
 		return features[i.getValue()];
@@ -17,7 +17,7 @@ public class Features {
 		}
 		return featureSubset;
 	}
-	public double[] getAllFeatures(){
+	public Double[] getAllFeatures(){
 		return features;
 	}
 	public void recompute(){
