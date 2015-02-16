@@ -1,5 +1,6 @@
 package technicalindicators;
 
+import data.entities.enums.HelperIndicator;
 import data.entities.enums.Indicator;
 import data.entities.enums.TradingIndex;
 
@@ -27,18 +28,24 @@ public class Computation {
 		return sma;
 	}
 	public Double exponentialMovingAverage(int days, Double multiplier){
-		//TODO
 		Double ema;
-		ema = (indexData.getCloseToday() - indexData.getEMAYesterday()) * multiplier + indexData.getEMAYesterday();
-		indexData.setEMAToday(ema);
+		if(indexData.getEMAYesterday() != null){
+			ema = (indexData.getCloseToday() - indexData.getEMAYesterday()) * multiplier + indexData.getEMAYesterday();
+		}
+		else{
+			ema = indexData.getCloseToday() * multiplier;
+		}
+		indexData.setHelperIndicator(HelperIndicator.EXPONENTIAL_MOVING_AVERAGE, ema);
 		return ema;
 	}
 	
 	public Double accumulationDistributionLine(){
-		//TODO
 		Double adl;
-		adl = indexData.getADLYesterday() + indexData.getADOscillatorToday();
-		indexData.setADLToday(adl);
+		if(indexData.getADLYesterday() != null)
+			adl = indexData.getADLYesterday() + indexData.getADOscillatorToday();
+		else
+			adl = indexData.getADOscillatorToday();
+		indexData.setHelperIndicator(HelperIndicator.ACCUMULATION_DISTRIBUTION_LINE, adl);
 		return 0.0;
 	}
 	
@@ -60,16 +67,20 @@ public class Computation {
 		}
 	}
 	public Double todaysAccumulationDistribution(){
-		//TODO
 		Double ad;
-		if(indexData.getCloseToday() > indexData.getCloseYesterday()){
-			ad = indexData.getCloseToday() - trueRangeLow();
-		}
-		else if(indexData.getCloseToday() < indexData.getCloseYesterday()){
-			ad = indexData.getCloseToday() - trueRangeHigh();
+		if(indexData.getCloseYesterday() == null){
+			ad = 0.0;
 		}
 		else{
-			ad = 0.0;
+			if(indexData.getCloseToday() > indexData.getCloseYesterday()){
+				ad = indexData.getCloseToday() - trueRangeLow();
+			}
+			else if(indexData.getCloseToday() < indexData.getCloseYesterday()){
+				ad = indexData.getCloseToday() - trueRangeHigh();
+			}
+			else{
+				ad = 0.0;
+			}
 		}
 		return ad;
 	}
@@ -166,8 +177,9 @@ public class Computation {
 		Double oscillator, acceleration;
 		oscillator = simpleMovingAverage(indexData.getMedianPriceInPeriod(5))
 				- simpleMovingAverage(indexData.getMedianPriceInPeriod(34));
-		indexData.setOscillatorToday(oscillator);
+		indexData.setHelperIndicator(HelperIndicator.UNNAMED_OSCILLATOR, oscillator);
 		acceleration = oscillator - simpleMovingAverage(indexData.getOscillatorInPeriod(5));
+		indexData.setTechnicalIndicator(Indicator.ACCELERATION, acceleration);
 		return acceleration;
 	}
 	public Double highestHigh(){
@@ -186,19 +198,21 @@ public class Computation {
 		//TODO
 		Double rsi;
 		rsi = 100 - 100 / (1 + relativeStrength());
+		indexData.setTechnicalIndicator(Indicator.RELATIVE_STRENGTH_INDEX, rsi);
 		return rsi;
 	}
 	public Double macdNinePeriodMovingAverage(){
 		//TODO
 		Double nine;
 		nine = exponentialMovingAverage(9,indexData.getMACDLine());
+		indexData.setTechnicalIndicator(Indicator.MACD_NINE_PERIOD_MOVING_AVERAGE, nine);
 		return nine;
 	}
 	public Double macdLine(){
 		//TODO
 		Double line;
 		line = exponentialMovingAverage(12,0.0) - exponentialMovingAverage(26, 0.0);
-		indexData.setMACDLine(line);
+		indexData.setTechnicalIndicator(Indicator.MACD_LINE, line);
 		return line;
 	}
 	public Double momentum(){
@@ -218,8 +232,9 @@ public class Computation {
 		return osc;
 	}
 	public Double stochasticOscillatorD(){
-		//TODO
-		return simpleMovingAverage(indexData.getKInPeriod(3));
+		Double d = simpleMovingAverage(indexData.getKInPeriod(3));
+		indexData.setTechnicalIndicator(Indicator.STOCKASTIC_OSCILLATOR_D, d);
+		return d;
 	}
 	public Double typicalPrice(){
 		Double[] values = {indexData.getHighToday(), indexData.getLowToday(), indexData.getCloseToday()};
@@ -259,9 +274,14 @@ public class Computation {
 		return rate;
 	}
 	public Double williamsAccumulationDistribution(){
-		//TODO
-		Double ad = todaysAccumulationDistribution() + indexData.getWilliamsADYesterday();
-		indexData.setWilliamsADToday(ad);
+		Double ad;
+		if(indexData.getWilliamsADYesterday() != null){
+			ad = todaysAccumulationDistribution() + indexData.getWilliamsADYesterday();
+		}
+		else{
+			ad = todaysAccumulationDistribution();
+		}
+		indexData.setTechnicalIndicator(Indicator.WILLIAMS_ACCUMULATION_DISTRIBUTION, ad);
 		return ad;
 	}
 	public Double bollingerUpper(){

@@ -1,5 +1,6 @@
 package technicalindicators;
 import java.net.UnknownHostException;
+import java.util.ArrayList;
 
 import data.db.MongoStockDatabase;
 import data.entities.StockRecord;
@@ -252,14 +253,46 @@ public class StockIndexWrapper {
 			return null;
 	}
 	public Double[] getOscillatorInPeriod(int days){
-		//TODO
-		Double[] osc = new Double[days];
-		return osc;
+		ArrayList<Double> oscSet = new ArrayList<Double>();
+		long id = todayRecord.getId();
+		int size;
+		if(days > id){
+			size = (int)id;
+		}
+		else{
+			size = days;
+		}
+		
+		for(int i = size-1; i>=0; i--){
+			StockRecord r = db.getRecordFromIndex(id-i, index.getDatabaseName());
+			if(r.hasHelperIndicator(HelperIndicator.UNNAMED_OSCILLATOR)){
+				oscSet.add(r.getHelperIndicator(HelperIndicator.UNNAMED_OSCILLATOR));
+			}
+		}
+		Double[] newArray = new Double[oscSet.size()];
+		
+		return oscSet.toArray(newArray);
 	}
 	public Double[] getKInPeriod(int period){
-		//TODO
-		Double[] kSet = new Double[period];
-		return kSet;
+		ArrayList<Double> kSet = new ArrayList<Double>();
+		long id = todayRecord.getId();
+		int size;
+		if(period > id){
+			size = (int)id;
+		}
+		else{
+			size = period;
+		}
+		
+		for(int i = size-1; i>=0; i--){
+			StockRecord r = db.getRecordFromIndex(id-i, index.getDatabaseName());
+			if(r.hasTechnicalIndicator(Indicator.STOCHASTIC_OSCILLATOR_K)){
+				kSet.add(r.getTechicalIndicator(Indicator.STOCHASTIC_OSCILLATOR_K));
+			}
+		}
+		Double[] newArray = new Double[kSet.size()];
+		
+		return kSet.toArray(newArray);
 	}
 	public Double getADOscillatorToday(){
 		if(todayRecord.hasTechnicalIndicator(Indicator.ACCUMULATION_DISTRIBUTION_OSCILLATOR)){
@@ -287,41 +320,7 @@ public class StockIndexWrapper {
 	public void setHelperIndicator(HelperIndicator h, Double value){
 		todayRecord.setHelperIndicator(h,value);
 	}
-	public void setMACDLine(Double macd){
-		
-	}
-	public void setEMAToday(Double ema){
-		
-	}
-	public void setWilliamsADToday(Double ad){
-		
-	}
-	public void setMedianPriceToday(Double med){
-		
-	}
-	public void setPVTToday(Double pvt){
-		
-	}
-	public void setOBVToday(Double obv){
-		
-	}
-	public void setPVIToday(Double pvi){
-		
-	}
-	public void setOscillatorToday(Double osc){
-		
-	}
-	public void setKToday(Double k){
-		
-	}
-	public void setADOscillator(Double ad){
-		
-	}
-	public void setADLToday(Double ald){
-		
-	}
 	public void updateRecord(){
-		//TODO
 		db.updateStockRecord(todayRecord);
 	}
 }
