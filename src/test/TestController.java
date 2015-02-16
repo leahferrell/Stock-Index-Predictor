@@ -140,12 +140,36 @@ public class TestController {
 		System.out.println("Typical Price: "+tp+ " Median Price: "+tm);
 	}
 	
+	public static void tryComputationWC(){
+		double wc = c.weightedClose();
+		System.out.println("Weighted Close: "+wc);
+	}
+	
+	public static void tryComputationWR(){
+		double wr = c.weightedClose();
+		System.out.println("Williams R: "+wr);
+	}
+	
+	public static void tryComputationBollinger(){
+		double bu = c.bollingerUpper();
+		double bm = c.bollingerMiddle();
+		double bl = c.bollingerLower();
+		System.out.println("Upper: "+ bu+ " Middle: "+ bm + " Lower: "+ bl);
+	}
+	
+	public static void tryComputationMA(){
+		double ma25 = c.movingAverage25();
+		double ma65 = c.movingAverage65();
+		
+		System.out.println("25: " + ma25 + "65: " + ma65);
+	}
+	
 	public static void tryComputationUpdate(){
 		c.storeComputations();
 		try {
 			MongoStockDatabase db = new MongoStockDatabase();
 			//db.printAllRecords(index);
-			for(int i = 1; i <= 1; i++)
+			for(int i = 65; i <= 65; i++)
 				db.printRecord(index, new Long(i));
 		} catch (UnknownHostException e) {
 			e.printStackTrace();
@@ -161,7 +185,10 @@ public class TestController {
 		//tryComputationHighLow();
 		//tryComputationMo();
 		//tryComputationK();
-		tryComputationTM();
+		//tryComputationTM();
+		//tryComputationWC();
+		//tryComputationBollinger();
+		tryComputationMA();
 		tryComputationUpdate();
 	}
 }

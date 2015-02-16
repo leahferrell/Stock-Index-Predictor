@@ -19,12 +19,10 @@ public class Computation {
 		indexData.updateRecord();
 	}
 	public Double simpleMovingAverage(int days){
-		//TODO
 		Double[] values = indexData.getCloseInPeriod(days);
 		return simpleMovingAverage(values);
 	}
 	public Double simpleMovingAverage(Double[] values){
-		//TODO
 		Double sma = average(values);
 		return sma;
 	}
@@ -45,14 +43,21 @@ public class Computation {
 	}
 	
 	public Double trueRangeHigh(){
-		//TODO
-		Double[] values = {indexData.getCloseYesterday(), indexData.getHighToday()};
-		return max(values);
+		if(indexData.getCloseYesterday() == null)
+			return indexData.getHighToday();
+		else{
+			Double[] values = {indexData.getCloseYesterday(), indexData.getHighToday()};
+			return max(values);
+		}
 	}
 	public Double trueRangeLow(){
-		//TODO
-		Double[] values = {indexData.getCloseYesterday(), indexData.getLowToday()};
-		return min(values);
+		if(indexData.getCloseYesterday() == null){
+			return indexData.getLowToday();
+		}
+		else{
+			Double[] values = {indexData.getCloseYesterday(), indexData.getLowToday()};
+			return min(values);
+		}
 	}
 	public Double todaysAccumulationDistribution(){
 		//TODO
@@ -226,12 +231,12 @@ public class Computation {
 		Double[] values = {indexData.getHighToday(), indexData.getLowToday()};
 		Double price = average(values);
 		indexData.setTechnicalIndicator(Indicator.MEDIAN_PRICE, price);
-		indexData.setMedianPriceToday(price);
 		return price;
 	}
 	public Double weightedClose(){
 		Double[] values = {indexData.getHighToday(), indexData.getLowToday(), indexData.getCloseToday(), indexData.getCloseToday()};
 		Double price = average(values);
+		indexData.setTechnicalIndicator(Indicator.WEIGHTED_CLOSE, price);
 		return price;
 	}
 	public Double williamsR(){
@@ -239,34 +244,50 @@ public class Computation {
 		Double high = highestHigh();
 		Double low = lowestLow();
 		r = (high - indexData.getCloseToday())/(high - low) * 100;
+		indexData.setTechnicalIndicator(Indicator.WILLIAMS_R, r);
 		return r;
 	}
 	public Double priceRateOfChange(){
-		Double rate = (indexData.getCloseToday()-indexData.getCloseYesterday())/indexData.getCloseYesterday();
+		Double rate;
+		if(indexData.getCloseYesterday() == null){
+			rate = 0.0;
+		}
+		else{
+			rate = (indexData.getCloseToday()-indexData.getCloseYesterday())/indexData.getCloseYesterday();
+		}
+		indexData.setTechnicalIndicator(Indicator.PRICE_RATE_OF_CHANGE, rate);
 		return rate;
 	}
 	public Double williamsAccumulationDistribution(){
+		//TODO
 		Double ad = todaysAccumulationDistribution() + indexData.getWilliamsADYesterday();
 		indexData.setWilliamsADToday(ad);
 		return ad;
 	}
 	public Double bollingerUpper(){
 		Double upper = simpleMovingAverage(20) + standardDeviation(indexData.getCloseInPeriod(20)) * 2;
+		indexData.setTechnicalIndicator(Indicator.BOLLINGER_UPPER, upper);
 		return upper;
 	}
 	public Double bollingerMiddle(){
 		Double middle = simpleMovingAverage(20);
+		indexData.setTechnicalIndicator(Indicator.BOLLINGER_MIDDLE, middle);
 		return middle;
 	}
 	public Double bollingerLower(){
 		Double lower = simpleMovingAverage(20) - standardDeviation(indexData.getCloseInPeriod(20)) * 2;
+		indexData.setTechnicalIndicator(Indicator.BOLLINGER_LOWER, lower);
 		return lower;
 	}
 	public Double movingAverage25(){
-		return simpleMovingAverage(25);
+		Double avg = simpleMovingAverage(25);
+		indexData.setTechnicalIndicator(Indicator.MOVING_AVERAGE_25, avg);
+		return avg;
 	}
 	public Double movingAverage65(){
-		return simpleMovingAverage(65);
+		Double avg = simpleMovingAverage(65);
+		indexData.setTechnicalIndicator(Indicator.MOVING_AVERAGE_65, avg);
+		return avg;
 	}
 	private Double average(Double[] numbers){
 		Double total = 0.0;
@@ -296,7 +317,12 @@ public class Computation {
 	}
 	
 	private Double standardDeviation(Double[] numbers){
-		//TODO
-		return 0.0;
+		double mean = average(numbers);
+		double sum = 0;
+		for(Double n : numbers){
+			sum += Math.pow(n-mean, 2);
+		}
+		double stdev = Math.sqrt((sum/numbers.length));
+		return stdev;
 	}
 }

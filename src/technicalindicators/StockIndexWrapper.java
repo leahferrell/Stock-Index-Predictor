@@ -11,7 +11,7 @@ import data.entities.enums.TradingIndex;
 public class StockIndexWrapper {
 	private TradingIndex index;
 	private MongoStockDatabase db;
-	private long dayId = 1;	//TODO
+	private long dayId = 65;	//TODO
 	private StockRecord todayRecord;
 	private StockRecord yesterdayRecord;
 	public StockIndexWrapper(TradingIndex i){
@@ -76,8 +76,21 @@ public class StockIndexWrapper {
 			return null;
 	}
 	public Double[] getCloseInPeriod(int numOfDays){
-		//TODO
-		Double[] closeSet = new Double[numOfDays];
+		Double[] closeSet;
+		int setSize;
+		long id = todayRecord.getId();
+		if(numOfDays < todayRecord.getId())
+			setSize = numOfDays;
+		else
+			setSize = (int)id;
+		
+		closeSet = new Double[setSize];
+		int count = 0;
+		for(int i = setSize-1; i >= 0; i--){
+			closeSet[count] = db.getRecordFromIndex(id - i, index.getDatabaseName()).getClose();
+			count++;
+		}
+		
 		return closeSet;
 	}
 	public Double getOBVYesterday(){
@@ -186,9 +199,26 @@ public class StockIndexWrapper {
 			return null;
 	}
 	public Double[] getMedianPriceInPeriod(int days){
-		//TODO
-		Double[] prices = new Double[days];
-		return prices;
+		Double[] priceSet;
+		int setSize;
+		long id = todayRecord.getId();
+		if(days < todayRecord.getId())
+			setSize = days;
+		else
+			setSize = (int)id;
+		
+		priceSet = new Double[setSize];
+		int count = 0;
+		for(int i = setSize-1; i >= 0; i--){
+			StockRecord s = db.getRecordFromIndex(id - i, index.getDatabaseName());
+			if(s.hasTechnicalIndicator(Indicator.MEDIAN_PRICE))
+				priceSet[count] = s.getTechicalIndicator(Indicator.MEDIAN_PRICE);
+			else
+				priceSet[count] = null;
+			count++;
+		}
+		
+		return priceSet;
 	}
 	public Double getWilliamsADYesterday(){
 		Indicator i = Indicator.WILLIAMS_ACCUMULATION_DISTRIBUTION;
