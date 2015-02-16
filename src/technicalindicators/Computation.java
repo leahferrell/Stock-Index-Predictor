@@ -27,13 +27,14 @@ public class Computation {
 		Double sma = average(values);
 		return sma;
 	}
-	public Double exponentialMovingAverage(int days, Double multiplier){
+	public Double exponentialMovingAverage(int days){
 		Double ema;
+		Double multiplier = 2 / ((double)days+1);
 		if(indexData.getEMAYesterday() != null){
 			ema = (indexData.getCloseToday() - indexData.getEMAYesterday()) * multiplier + indexData.getEMAYesterday();
 		}
 		else{
-			ema = indexData.getCloseToday() * multiplier;
+			ema = simpleMovingAverage(days);
 		}
 		indexData.setHelperIndicator(HelperIndicator.EXPONENTIAL_MOVING_AVERAGE, ema);
 		return ema;
@@ -87,7 +88,10 @@ public class Computation {
 	
 	public Double relativeStrength(){
 		//TODO
-		return 0.0;
+		double upwardChange = 1.0;
+		double downwardChange = 1.0;
+		double rs = upwardChange / downwardChange;
+		return rs;
 	}
 	public Double positiveVolumeIndex(){
 		Double pvi;
@@ -173,11 +177,11 @@ public class Computation {
 		return 0.0;
 	}
 	public Double acceleration(){
-		//TODO
 		Double oscillator, acceleration;
 		oscillator = simpleMovingAverage(indexData.getMedianPriceInPeriod(5))
 				- simpleMovingAverage(indexData.getMedianPriceInPeriod(34));
 		indexData.setHelperIndicator(HelperIndicator.UNNAMED_OSCILLATOR, oscillator);
+		
 		acceleration = oscillator - simpleMovingAverage(indexData.getOscillatorInPeriod(5));
 		indexData.setTechnicalIndicator(Indicator.ACCELERATION, acceleration);
 		return acceleration;
@@ -202,16 +206,23 @@ public class Computation {
 		return rsi;
 	}
 	public Double macdNinePeriodMovingAverage(){
-		//TODO
 		Double nine;
-		nine = exponentialMovingAverage(9,indexData.getMACDLine());
+		Double[] values = indexData.getMACDLineInPeriod(9);
+		Double multiplier = 2 / ((double)values.length+1);
+		Double signalLine = indexData.getMACDNinePeriodMovingAverageYesterday();
+		if(signalLine != null){
+			nine = (indexData.getCloseToday() - signalLine) * multiplier + signalLine;
+		}
+		else{
+			nine = simpleMovingAverage(values);
+		}
 		indexData.setTechnicalIndicator(Indicator.MACD_NINE_PERIOD_MOVING_AVERAGE, nine);
 		return nine;
 	}
 	public Double macdLine(){
 		//TODO
 		Double line;
-		line = exponentialMovingAverage(12,0.0) - exponentialMovingAverage(26, 0.0);
+		line = exponentialMovingAverage(12) - exponentialMovingAverage(26);
 		indexData.setTechnicalIndicator(Indicator.MACD_LINE, line);
 		return line;
 	}

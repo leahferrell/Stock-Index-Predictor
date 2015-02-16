@@ -252,6 +252,14 @@ public class StockIndexWrapper {
 		else
 			return null;
 	}
+	public Double getMACDNinePeriodMovingAverageYesterday(){
+		if(todayRecord.hasTechnicalIndicator(Indicator.MACD_NINE_PERIOD_MOVING_AVERAGE)){
+			return todayRecord.getTechicalIndicator(Indicator.MACD_NINE_PERIOD_MOVING_AVERAGE);
+		}
+		else
+			return null;
+	}
+	
 	public Double[] getOscillatorInPeriod(int days){
 		ArrayList<Double> oscSet = new ArrayList<Double>();
 		long id = todayRecord.getId();
@@ -293,6 +301,27 @@ public class StockIndexWrapper {
 		Double[] newArray = new Double[kSet.size()];
 		
 		return kSet.toArray(newArray);
+	}
+	public Double[] getMACDLineInPeriod(int period){
+		ArrayList<Double> mSet = new ArrayList<Double>();
+		long id = todayRecord.getId();
+		int size;
+		if(period > id){
+			size = (int)id;
+		}
+		else{
+			size = period;
+		}
+		
+		for(int i = size-1; i>=0; i--){
+			StockRecord r = db.getRecordFromIndex(id-i, index.getDatabaseName());
+			if(r.hasTechnicalIndicator(Indicator.MACD_LINE)){
+				mSet.add(r.getTechicalIndicator(Indicator.MACD_LINE));
+			}
+		}
+		Double[] newArray = new Double[mSet.size()];
+		
+		return mSet.toArray(newArray);
 	}
 	public Double getADOscillatorToday(){
 		if(todayRecord.hasTechnicalIndicator(Indicator.ACCUMULATION_DISTRIBUTION_OSCILLATOR)){
