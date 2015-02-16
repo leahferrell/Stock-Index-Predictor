@@ -1,24 +1,34 @@
 package technicalindicators;
 
+import data.entities.StockRecord;
+import data.entities.TechnicalIndicatorSet;
 import data.entities.enums.Indicator;
 import data.entities.enums.TradingIndex;
 
+/**
+ * I may be getting rid of this class soon. It's proving to be rather worthless.
+ * */
+
 public class Features {
-	static int TOTAL_FEATURES = 28;
-	static Double[] features = new Double[TOTAL_FEATURES];
+	static TechnicalIndicatorSet features;
 	static boolean compute = true;
+	
 	public double getFeature(Indicator i){
-		return features[i.getValue()];
+		return features.getIndicator(i);
 	}
 	public double[] getSelectedFeatures(Indicator[] iList){
 		double[] featureSubset = new double[iList.length];
 		for(int i = 0; i < iList.length; i++){
-			featureSubset[i] = features[iList[i].getValue()];
+			featureSubset[i] = features.getIndicator(iList[i]);
 		}
 		return featureSubset;
 	}
-	public Double[] getAllFeatures(){
+	public TechnicalIndicatorSet getAllFeatures(){
 		return features;
+	}
+	public StockRecord getCurrentRecord(TradingIndex t){
+		StockIndexWrapper index = new StockIndexWrapper(t);
+		return index.getTodaysRecord();
 	}
 	public void recompute(){
 		Computation c = new Computation(TradingIndex.DOW_JONES_INDUSTRIAL_AVERAGE);

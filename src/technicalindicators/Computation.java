@@ -1,5 +1,7 @@
 package technicalindicators;
 
+import data.entities.StockRecord;
+import data.entities.TechnicalIndicatorSet;
 import data.entities.enums.HelperIndicator;
 import data.entities.enums.Indicator;
 import data.entities.enums.TradingIndex;
@@ -11,11 +13,82 @@ public class Computation {
 		index = i;
 		indexData = new StockIndexWrapper(index);
 	}
-	public Double[] computeAll(){
+	/*public Double[] computeAll(){
 		//TODO
 		Double[] features = new Double[28];
+		features[Indicator.POSITIVE_VOLUME_INDEX.getValue()] = positiveVolumeIndex();
+		//features[Indicator.NEGATIVE_VOLUME_INDEX.getValue()] = negativeVolumeIndex();
+		features[Indicator.NEGATIVE_VOLUME_INDEX.getValue()] = 0.0;
+		features[Indicator.ONBALANCE_VOLUME.getValue()] = onBalanceVolume();
+		features[Indicator.TYPICAL_VOLUME.getValue()] = typicalVolume();
+		features[Indicator.PRICE_VOLUME_TREND.getValue()] = priceVolumeTrend();
+		features[Indicator.ACCUMULATION_DISTRIBUTION_OSCILLATOR.getValue()] = accumulationDistributionOscillator();
+		//features[Indicator.CHAIKINS_OSCILLATOR.getValue()] = chaikinsOscillator();
+		features[Indicator.CHAIKINS_OSCILLATOR.getValue()] = 0.0;
+		//features[Indicator.CHAIKINS_VOLATILITY.getValue()] = chaikinsVolatility();
+		features[Indicator.CHAIKINS_VOLATILITY.getValue()] = 0.0;
+		features[Indicator.ACCELERATION.getValue()] = acceleration();
+		features[Indicator.HIGHEST_HIGH.getValue()] = highestHigh();
+		features[Indicator.LOWEST_LOW.getValue()] = lowestLow();
+		//features[Indicator.RELATIVE_STRENGTH_INDEX.getValue()] = relativeStrengthIndex();
+		features[Indicator.RELATIVE_STRENGTH_INDEX.getValue()] = 0.0;
+		//features[Indicator.MACD_LINE.getValue()] = macdLine();
+		features[Indicator.RELATIVE_STRENGTH_INDEX.getValue()] = 0.0;
+		//features[Indicator.MACD_NINE_PERIOD_MOVING_AVERAGE.getValue()] = macdNinePeriodMovingAverage();
+		features[Indicator.RELATIVE_STRENGTH_INDEX.getValue()] = 0.0;
+		features[Indicator.MOMENTUM.getValue()] = momentum();
+		features[Indicator.STOCHASTIC_OSCILLATOR_K.getValue()] = stochasticOscillatorK();
+		features[Indicator.STOCKASTIC_OSCILLATOR_D.getValue()] = stochasticOscillatorD();
+		features[Indicator.TYPICAL_PRICE.getValue()] = typicalPrice();
+		features[Indicator.MEDIAN_PRICE.getValue()] = medianPrice();
+		features[Indicator.WEIGHTED_CLOSE.getValue()] = weightedClose();
+		features[Indicator.WILLIAMS_R.getValue()] = williamsR();
+		features[Indicator.PRICE_RATE_OF_CHANGE.getValue()] = priceRateOfChange();
+		features[Indicator.WILLIAMS_ACCUMULATION_DISTRIBUTION.getValue()] = williamsAccumulationDistribution();
+		features[Indicator.BOLLINGER_UPPER.getValue()] = bollingerUpper();
+		features[Indicator.BOLLINGER_LOWER.getValue()] = bollingerLower();
+		features[Indicator.BOLLINGER_MIDDLE.getValue()] = bollingerMiddle();
+		features[Indicator.MOVING_AVERAGE_25.getValue()] = movingAverage25();
+		features[Indicator.MOVING_AVERAGE_65.getValue()] = movingAverage65();
 		return features;
+	}*/
+	
+	public TechnicalIndicatorSet computeAll(){
+		positiveVolumeIndex();
+		//negativeVolumeIndex();
+		onBalanceVolume();
+		typicalVolume();
+		priceVolumeTrend();
+		accumulationDistributionOscillator();
+		//chaikinsOscillator();
+		//chaikinsVolatility();
+		acceleration();
+		highestHigh();
+		lowestLow();
+		//relativeStrengthIndex();
+		//macdLine();
+		//macdNinePeriodMovingAverage();
+		momentum();
+		stochasticOscillatorK();
+		stochasticOscillatorD();
+		typicalPrice();
+		medianPrice();
+		weightedClose();
+		williamsR();
+		priceRateOfChange();
+		williamsAccumulationDistribution();
+		bollingerUpper();
+		bollingerLower();
+		bollingerMiddle();
+		movingAverage25();
+		movingAverage65();
+		return indexData.getTechnicalIndicatorSet();
 	}
+	
+	public StockRecord getUpdatedRecord(){
+		return indexData.getTodaysRecord();
+	}
+	
 	public void storeComputations(){
 		indexData.updateRecord();
 	}

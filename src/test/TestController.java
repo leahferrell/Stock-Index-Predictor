@@ -176,7 +176,7 @@ public class TestController {
 		}
 	}
 	
-	public static void main(String[] args){
+	/*public static void main(String[] args){
 		//tryComputationPVI();
 		//tryComputationOBV();
 		//tryComputationTV();
@@ -188,7 +188,7 @@ public class TestController {
 		//tryComputationTM();
 		//tryComputationWC();
 		//tryComputationBollinger();
-		tryComputationMA();
-		tryComputationUpdate();
-	}
+		//tryComputationMA();
+		//tryComputationUpdate();
+	}*/
 }

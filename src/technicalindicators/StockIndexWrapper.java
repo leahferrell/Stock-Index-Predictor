@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import data.db.MongoStockDatabase;
 import data.entities.StockRecord;
+import data.entities.TechnicalIndicatorSet;
 import data.entities.enums.HelperIndicator;
 import data.entities.enums.Indicator;
 import data.entities.enums.TradingIndex;
@@ -12,7 +13,7 @@ import data.entities.enums.TradingIndex;
 public class StockIndexWrapper {
 	private TradingIndex index;
 	private MongoStockDatabase db;
-	private long dayId = 65;	//TODO
+	//private long dayId = 65;
 	private StockRecord todayRecord;
 	private StockRecord yesterdayRecord;
 	public StockIndexWrapper(TradingIndex i){
@@ -22,11 +23,19 @@ public class StockIndexWrapper {
 	private void setUpDatabase(){
 		try {
 			db = new MongoStockDatabase();
-			todayRecord = db.getRecordFromIndex(dayId, index.getDatabaseName());
-			yesterdayRecord = db.getRecordFromIndex(dayId-1, index.getDatabaseName());
+			//todayRecord = db.getRecordFromIndex(dayId, index.getDatabaseName());
+			//yesterdayRecord = db.getRecordFromIndex(dayId-1, index.getDatabaseName());
+			todayRecord = db.getRecordFromToday(index.getDatabaseName());
+			yesterdayRecord = db.getRecordFromYesterday(index.getDatabaseName());
 		} catch (UnknownHostException e) {
 			e.printStackTrace();
 		}
+	}
+	public TechnicalIndicatorSet getTechnicalIndicatorSet(){
+		return todayRecord.getAllTechnicalIndicators();
+	}
+	public StockRecord getTodaysRecord(){
+		return todayRecord;
 	}
 	public Double getVolumeToday(){
 		return todayRecord.getVolume();
